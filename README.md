@@ -1,4 +1,17 @@
 # ProjectBankingApp Team 7
+
+Abgabetermin: Sonntag, 22. Juni 2020, 00.01 Uhr
+Abgabeinhalte: Als Zip Datei mit Namen: „Banking App <Gruppen Id>.zip
+
+- Jeglichen Source Code und komplett lauffähiges Projekt
+- Packen Sie das Projekt in ausführbare „ jar Files. Die „ jar Files sollen auf der Konsole ausführbar sein : java jar BankingApp
+- Komplette Dokumentation (pdf) inkl. Anleitung, wie das Programm zu installieren, auszuführen und zu bedienen ist (z.B. Pfade,
+  Login Daten wie Benutzer, PW, …, Demodaten, …), Design Dokumente, Informationen zu externer Software wie z.B.
+  Datenbanken, Web Server usw. Erläuterung der Umsetzung sowie verwendeten Techniken und UML Diagrammen
+- Abschlusspräsentation in Form eines Videos (Live Demo) aller Funktionen der BankingApp (stellen Sie sicher, dass in Ihrer
+  Abschlusspräsentation alle wichtigen Elemente Ihrer Arbeit erläutert und ersichtlich werden). In dem Video sollte jeder das
+  präsentieren was er selbst programmiert hat.
+
 Aufgabe:
 
 Schreiben Sie eine Bankanwendung „BankingApp“ mit klassischen Funktionen wie:
