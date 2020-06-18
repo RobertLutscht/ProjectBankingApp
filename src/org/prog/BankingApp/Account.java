@@ -3,18 +3,27 @@ package org.prog.BankingApp;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Account {
+public abstract class Account {
 
-    public String owner;
-    public String bic;
-    public String iban;
+    private String owner;
+    private final String bic;
+    private final String iban;
 
     private int balance;
     private boolean covered;
+    private double interestRate;
     private List<Transactions> transactions = new ArrayList<Transactions>();
 
     //ein Default Konstrukter
-    public Account() { }
+    public Account(String bic, String iban, String owner) {
+        this.owner = owner;
+        this.bic = bic;
+        if(Numbers.ibancheck(iban)){
+            this.iban = iban;
+        } else {
+            System.out.println("Sie haben eine falsche IBAN eingegeben, versuchen Sie es erneut.");
+        }
+    }
 
     //Methode um Geld auf das Konto einzuzahlen
     public void deposit(int ammount) {
@@ -27,6 +36,18 @@ public class Account {
     public void withdraw(int ammount) {
         if (balance - ammount >= 0) {
             Transactions transaction = new Transactions(ammount, "Von Konto abgehoben");
+            balance -= ammount;
+            transactions.add(transaction);
+            return;
+        } else {
+            System.out.println("Du hast nicht genug Geld auf deinem Konto");
+            return;
+        }
+    }
+
+    public void transfer(int ammount, Account name){
+        if (balance - ammount >= 0) {
+            Transactions transaction = new Transactions(ammount, "An " + name.owner + " überwiesen.");
             balance -= ammount;
             transactions.add(transaction);
             return;
@@ -57,9 +78,29 @@ public class Account {
         return covered;
     }
 
+    public double getInterestRate() {
+        return interestRate;
+    }
+
+    public void setInterestRate(double interestRate) {
+        this.interestRate = interestRate;
+    }
+
     public void getList(){
         for(Transactions transaction: transactions){
             System.out.println(transaction);
         }
+    }
+
+    public void setOwner(String owner) {
+        this.owner = owner;
+    }
+
+    public void setBalance(int balance) {
+        this.balance = balance;
+    }
+
+    public void setList(Transactions transaction){
+        this.transactions.add(transaction);
     }
 }

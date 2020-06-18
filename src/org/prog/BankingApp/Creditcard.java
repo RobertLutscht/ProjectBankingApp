@@ -7,13 +7,25 @@ public class Creditcard extends Account {
 
     //Konstruktor
     public Creditcard(String owner, int limit, String bic,String iban){
-        this.owner = owner;
+        super(bic, iban, owner);
         this.limit = limit;
-        this.bic = bic;
-        if(Numbers.ibancheck(iban)){
-            this.iban = iban;
+    }
+
+    @Override
+    public void withdraw(int ammount) {
+        System.out.println("Sie können nicht von Ihrer Kreditkarte Geld abheben.");
+    }
+
+    @Override
+    public void transfer(int ammount, Account name) {
+        if (getBalance() + limit - ammount >= 0) {
+            Transactions transaction = new Transactions(ammount, "Von Konto abgehoben");
+            setBalance(getBalance() - ammount);
+            setList(transaction);
+            return;
         } else {
-            System.out.println("Sie haben eine falsche IBAN eingegeben, versuchen Sie es erneut.");
+            System.out.println("Du hast nicht genug Geld auf deinem Konto");
+            return;
         }
     }
 
