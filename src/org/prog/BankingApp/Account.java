@@ -1,28 +1,20 @@
 package org.prog.BankingApp;
 
-import javax.naming.event.ObjectChangeListener;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Account {
 
-    private int owner;
-    private String bic;
-    private String iban;
+    public String owner;
+    public String bic;
+    public String iban;
 
     private int balance;
     private boolean covered;
     private List<Transactions> transactions = new ArrayList<Transactions>();
 
-    //ein Default und ein spezifischer Konstruktor
-    public Account() {
-    }
-
-    public Account(int owner, String bic, String iban) {
-        this.owner = owner;
-        this.bic = bic;
-        this.iban = iban;
-    }
+    //ein Default Konstrukter
+    public Account() { }
 
     //Methode um Geld auf das Konto einzuzahlen
     public void deposit(int ammount) {
@@ -45,7 +37,7 @@ public class Account {
     }
 
     //getter Methoden für alle Variablen
-    public int getOwner() {
+    public String getOwner() {
         return owner;
     }
 
@@ -68,7 +60,6 @@ public class Account {
     public void getList(){
         for(Transactions transaction: transactions){
             System.out.println(transaction);
-
         }
     }
 }
