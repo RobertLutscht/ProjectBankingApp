@@ -1,4 +1,8 @@
-public class Creditcard extends Account{
+package org.prog.BankingApp;
+
+import org.prog.BankingApp.Account;
+
+public class Creditcard extends Account {
 
     private boolean overdrawn;
     private int limit;
