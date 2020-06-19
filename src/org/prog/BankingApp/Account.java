@@ -6,8 +6,8 @@ import java.util.List;
 public abstract class Account {
 
     private String owner;
-    private final String bic;
-    private final String iban;
+    private final String BIC;
+    private final String IBAN;
 
     private int balance;
     private boolean covered;
@@ -15,11 +15,11 @@ public abstract class Account {
     private List<Transactions> transactions = new ArrayList<Transactions>();
 
     //Der Account Konstruktor
-    public Account(String bic, String iban, String owner) {
+    public Account(String BIC, String IBAN, String owner) {
         this.owner = owner;
-        this.bic = bic;
-        if(Numbers.ibancheck(iban)){
-            this.iban = iban;
+        this.BIC = BIC;
+        if(Numbers.ibancheck(IBAN)){
+            this.IBAN = IBAN;
         } else {
             System.out.println("Sie haben eine falsche IBAN eingegeben, versuchen Sie es erneut.");
         }
@@ -62,12 +62,12 @@ public abstract class Account {
         return owner;
     }
 
-    public String getBic() {
-        return bic;
+    public String getBIC() {
+        return BIC;
     }
 
-    public String getIban() {
-        return iban;
+    public String getIBAN() {
+        return IBAN;
     }
 
     public int getBalance() {
