@@ -14,7 +14,7 @@ public abstract class Account {
     private double interestRate;
     private List<Transactions> transactions = new ArrayList<Transactions>();
 
-    //ein Default Konstrukter
+    //Der Account Konstruktor
     public Account(String bic, String iban, String owner) {
         this.owner = owner;
         this.bic = bic;
