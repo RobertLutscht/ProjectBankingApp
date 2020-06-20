@@ -12,9 +12,9 @@ public class Database {
     private Database(){
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost", "admin", "Hallo!");
+            con = DriverManager.getConnection("jdbc:mysql://localhost", "root", "Hallo!");
             PreparedStatement ps = con.prepareStatement("CREATE DATABASE IF NOT EXISTS Bank");
-            ps.execute();
+            ps.executeUpdate();
         } catch(ClassNotFoundException e) {
             e.printStackTrace();
         } catch(SQLException throwables){
@@ -24,29 +24,38 @@ public class Database {
 
     public void initiateDB(){
         try {
-            PreparedStatement statement = con.prepareStatement("CREATE TABLE IF NOT EXISTS users (userID INTEGER, firstName TEXT, lastName TEXT, birthday INTEGER, street TEXT, plz TEXT, city TEXT, country TEXT, phoneNumber TEXT, eMail TEXT");
-            statement.execute();
+            PreparedStatement statement = con.prepareStatement("CREATE TABLE IF NOT EXISTS Bank.users (" +
+                    "userID INT NOT NULL, firstName VARCHAR(45) NOT NULL, lastName VARCHAR(45) NOT NULL, " +
+                    "birthday INT NOT NULL, street VARCHAR(45) NOT NULL, plz VARCHAR(45) NOT NULL, " +
+                    "city VARCHAR(45) NOT NULL, country VARCHAR(45) NOT NULL, phoneNumber VARCHAR(45) NOT NULL, " +
+                    "eMail VARCHAR(45) NOT NULL)");
+            statement.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
 
         try {
-            PreparedStatement statement = con.prepareStatement("CREATE TABLE IF NOT EXISTS accounts (userID INTEGER, iban TEXT, kontonummer INTEGER, bic TEXT, balance INTEGER, limit INTEGER");
-            statement.execute();
+            PreparedStatement statement = con.prepareStatement("CREATE TABLE IF NOT EXISTS Bank.accounts (" +
+                    "userID INT NOT NULL, iban VARCHAR(45) NOT NULL, kontonummer INT NOT NULL, bic VARCHAR(45) NOT NULL, " +
+                    "balance INT NOT NULL, `limit` INT NOT NULL)");
+            statement.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
 
         try {
-            PreparedStatement statement = con.prepareStatement("CREATE TABLE IF NOT EXISTS transactions (userID INTEGER, transactionID INTEGER, fromIBAN TEXT, toIBAN TEXT, date TEXT, ammount INTEGER");
-            statement.execute();
+            PreparedStatement statement = con.prepareStatement("CREATE TABLE IF NOT EXISTS Bank.transactions (" +
+                    "userID INT NOT NULL, transactionID INT NOT NULL, fromIBAN VARCHAR(45) NOT NULL, " +
+                    "toIBAN VARCHAR(45) NOT NULL, date VARCHAR(45) NOT NULL, ammount INT NOT NULL)");
+            statement.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
 
         try {
-            PreparedStatement statement = con.prepareStatement("CREATE TABLE IF NOT EXISTS loginData (userID INTEGER, password TEXT, rolle TEXT");
-            statement.execute();
+            PreparedStatement statement = con.prepareStatement("CREATE TABLE IF NOT EXISTS Bank.loginData (" +
+                    "userID INT NOT NULL, password VARCHAR(45) NOT NULL, rolle VARCHAR(45) NOT NULL)");
+            statement.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -120,7 +129,7 @@ public class Database {
 
 
 
-    public void searchData(String userID, String table, String item){
+    public void searchData(int userID, String table, String item){
 
         String query = "select " + item + " from " + table + " where userID=" + userID;
         ResultSet rs = search(query, item);
@@ -129,13 +138,13 @@ public class Database {
             int columns =rs.getMetaData().getColumnCount();
 
             for (int i = 1; i <= columns; i++) {
-                System.out.print(rs.getMetaData().getColumnLabel(i) + "\t");
+                System.out.print(rs.getMetaData().getColumnLabel(i) + "\t\t");
             }
             System.out.println();
 
             while(rs.next()){
                 for(int i = 1; i <= columns; i++){
-                    System.out.println(rs.getString(i) + "\t");
+                    System.out.print(rs.getString(i) + "\t\t");
                 }
                 System.out.println();
             }
@@ -165,13 +174,13 @@ public class Database {
 
 
     public int getMaxId(String id, String table){
-        String query = "select MAX " + id + " FROM bank." + table;
+        String query = "select MAX(" + id + ") as number FROM bank." + table;
         int ergebnis = 0;
         try {
             Statement st = con.createStatement();
              ResultSet rs = st.executeQuery(query);
              rs.next();
-             ergebnis = Integer.parseInt(rs.toString());
+             ergebnis = Integer.parseInt(rs.getString("number"));
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         } finally {
