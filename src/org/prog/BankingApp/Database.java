@@ -44,7 +44,7 @@ public class Database {
         }
 
         try {
-            PreparedStatement statement = con.prepareStatement("CREATE TABLE IF NOT EXISTS loginData (userID INTEGER, password TEXT, roll TEXT");
+            PreparedStatement statement = con.prepareStatement("CREATE TABLE IF NOT EXISTS loginData (userID INTEGER, password TEXT, rolle TEXT");
             statement.execute();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -103,30 +103,62 @@ public class Database {
         }
     }
 
-
-
-/*
-
-
-    public String searchData(String userID, String item){
-        String query = "select " + item + " from Bank where userID=" + userID;
-        return search(query, item);
+    public void addLoginData(int userID, String password, String rolle){
+        try {
+            PreparedStatement st = con.prepareStatement("insert into Bank.loginData values (?, ?, ?)");
+            st.setInt(1, userID);
+            st.setString(2, password);
+            st.setString(3, rolle);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
-    private String search(String query, String item){
+
+
+
+
+    public void searchData(String userID, String table, String item){
+
+        String query = "select " + item + " from " + table + " where userID=" + userID;
+        ResultSet rs = search(query, item);
         try {
-            Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery(query);
-            rs.next();
-            item = rs.getString(item);
+
+            int columns =rs.getMetaData().getColumnCount();
+
+            for (int i = 1; i <= columns; i++) {
+                System.out.print(rs.getMetaData().getColumnLabel(i) + "\t");
+            }
+            System.out.println();
+
+            while(rs.next()){
+                for(int i = 1; i <= columns; i++){
+                    System.out.println(rs.getString(i) + "\t");
+                }
+                System.out.println();
+            }
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
-
         }
-
-        return item;
     }
-    */
+
+
+    private ResultSet search(String query, String item){
+
+        ResultSet rs = null;
+
+        try {
+            Statement st = con.createStatement();
+            rs = st.executeQuery(query);
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            System.out.println("Es gab einen Fehler");
+        }
+        finally {
+            return rs;
+        }
+    }
 
 }

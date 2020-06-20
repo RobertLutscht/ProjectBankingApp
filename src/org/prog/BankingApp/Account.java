@@ -9,6 +9,7 @@ public abstract class Account {
     private static int accountID;
     private int accountIDcounter = 1;
 
+
     private int balance;
     private boolean covered;
     private double interestRate;
