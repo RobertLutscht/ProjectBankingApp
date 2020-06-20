@@ -2,7 +2,7 @@ package org.prog.BankingApp;
 
 import java.math.BigInteger;
 
-public class IBAN {
+public class Iban {
 //    private String ibanrechner;
 //
 //    public String ibanrechner (){
