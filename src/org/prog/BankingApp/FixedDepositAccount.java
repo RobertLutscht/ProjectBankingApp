@@ -4,8 +4,8 @@ public class FixedDepositAccount extends Account{
 
     private int term;
 
-    public FixedDepositAccount(String owner, String bic,String iban, int term, double interestRate){
-        super(owner, bic, iban);
+    public FixedDepositAccount(int ownerID, String bic, int term){
+        super(bic, ownerID);
         this.term = term;
     }
 

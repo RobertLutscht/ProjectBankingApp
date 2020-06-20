@@ -5,8 +5,8 @@ public class Creditcard extends Account {
     private boolean overdrawn;
 
     //Konstruktor
-    public Creditcard(String owner, int limit, String bic,String iban){
-        super(bic, iban, owner);
+    public Creditcard(int ownerID, int limit, String bic){
+        super(bic, ownerID);
         this.setLimit(limit);
     }
 
