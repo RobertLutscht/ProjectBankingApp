@@ -1,14 +1,11 @@
 package org.prog.BankingApp;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public abstract class Account {
 
 
     private int ownerID;
-    private final String bic;
-    private final String iban;
+    private final String BIC;
+    private final String IBAN;
     private int accountID;
     private int accountIDcounter = 1;
 
@@ -19,12 +16,12 @@ public abstract class Account {
 
     //Der Account Konstruktor
     public Account(String bic, String iban, int ownerID) {
-        this.bic = bic;
+        this.BIC = bic;
         this.ownerID = ownerID;
         this.accountID = accountIDcounter;
         accountIDcounter++;
         //if(Numbers.ibancheck(iban)){
-            this.iban = iban;
+            this.IBAN = iban;
         //} else {
             System.out.println("Sie haben eine falsche IBAN eingegeben, versuchen Sie es erneut.");
         //}
@@ -33,14 +30,14 @@ public abstract class Account {
 
     //Methode um Geld auf das Konto einzuzahlen
     public void deposit(int ammount) {
-        Transactions transaction = new Transactions(ownerID, ammount, iban, "Wurde eingezahlt");
+        Transactions transaction = new Transactions(ownerID, ammount, IBAN, "Wurde eingezahlt");
         balance += ammount;
     }
 
     //Methode um Geld vom Konto abzuheben
     public void withdraw(int ammount) {
         if (balance - ammount >= 0) {
-            Transactions transaction = new Transactions(ownerID, ammount, "Von Konto abgehoben", iban);
+            Transactions transaction = new Transactions(ownerID, ammount, "Von Konto abgehoben", IBAN);
             balance -= ammount;
             return;
         } else {
@@ -51,7 +48,7 @@ public abstract class Account {
 
     public void transfer(int ammount, String iban){
         if (balance - ammount >= 0) {
-            Transactions transaction = new Transactions(ownerID, ammount, iban, this.iban);
+            Transactions transaction = new Transactions(ownerID, ammount, iban, this.IBAN);
             balance -= ammount;
             return;
         } else {
@@ -61,16 +58,13 @@ public abstract class Account {
     }
 
     //getter Methoden für alle Variablen
-    public String getOwner() {
-        return owner;
+
+    public String getBIC() {
+        return BIC;
     }
 
-    public String getBic() {
-        return bic;
-    }
-
-    public String getIban() {
-        return iban;
+    public String getIBAN() {
+        return IBAN;
     }
 
     public int getBalance() {
@@ -89,10 +83,6 @@ public abstract class Account {
         this.interestRate = interestRate;
     }
 
-    public void setOwner(String owner) {
-        this.owner = owner;
-    }
-
     public void setBalance(int balance) {
         this.balance = balance;
     }
@@ -101,8 +91,12 @@ public abstract class Account {
         return ownerID;
     }
 
-    public int getOwnerIDcounter() {
-        return ownerIDcounter;
+    public int getAccountID() {
+        return accountID;
+    }
+
+    public int getAccountIDcounter() {
+        return accountIDcounter;
     }
 
     public int getLimit() {
@@ -112,5 +106,9 @@ public abstract class Account {
     //Setter für das Limit
     public void setLimit(int limit) {
         this.limit = limit;
+    }
+
+    public void setOwnerID(int ownerID) {
+        this.ownerID = ownerID;
     }
 }
