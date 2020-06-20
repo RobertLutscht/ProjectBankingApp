@@ -105,5 +105,5 @@ public abstract class Account {
     public void setLimit(int limit) {
         this.limit = limit;
     }
-    
+
 }
