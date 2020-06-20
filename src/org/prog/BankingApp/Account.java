@@ -21,11 +21,11 @@ public abstract class Account {
         this.accountID = accountIDcounter;
         accountIDcounter++;
         //if(Numbers.ibancheck(iban)){
-            this.IBAN = Iban.convertKnrBlzToIBAN();;
+            this.IBAN = Iban.convertKnrBlzToIBAN();
         //} else {
             System.out.println("Sie haben eine falsche IBAN eingegeben, versuchen Sie es erneut.");
         //}
-        Database.data.addAccount(ownerID, IBAN, bic, balance, limit);
+        Database.data.addAccount(ownerID, IBAN, BIC, balance, limit);
     }
 
     //Methode um Geld auf das Konto einzuzahlen
@@ -93,12 +93,8 @@ public abstract class Account {
     }
 
 
-    public static int getAccountID() {
-        return accountID;
-    }
-
-    public int getAccountIDcounter() {
-        return accountIDcounter;
+    public void setOwnerID(int ownerID) {
+        this.ownerID = ownerID;
     }
 
     public int getLimit() {
@@ -109,10 +105,5 @@ public abstract class Account {
     public void setLimit(int limit) {
         this.limit = limit;
     }
-
-
-    public void setOwnerID(int ownerID) {
-        this.ownerID = ownerID;
-
-    }
+    
 }
