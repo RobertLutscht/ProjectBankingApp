@@ -29,9 +29,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/org/prog/BankingApp/Iban.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/prog/BankingApp/Iban.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/org/prog/BankingApp/account/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/prog/BankingApp/account/Account.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/prog/BankingApp/account/CheckingAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/prog/BankingApp/account/CheckingAccount.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/prog/BankingApp/account/Creditcard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/prog/BankingApp/account/Creditcard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/prog/BankingApp/account/FixedDepositAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/prog/BankingApp/account/FixedDepositAccount.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
