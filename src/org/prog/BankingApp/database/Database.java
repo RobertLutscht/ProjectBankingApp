@@ -1,5 +1,8 @@
 package org.prog.BankingApp.database;
 
+import org.prog.BankingApp.account.Account;
+import org.prog.BankingApp.user.User;
+
 import javax.xml.xpath.XPathEvaluationResult;
 import java.sql.*;
 
@@ -26,7 +29,7 @@ public class Database {
         try {
             PreparedStatement statement = con.prepareStatement("CREATE TABLE IF NOT EXISTS Bank.users (" +
                     "userID INT NOT NULL, firstName VARCHAR(45) NOT NULL, lastName VARCHAR(45) NOT NULL, " +
-                    "birthday INT NOT NULL, street VARCHAR(45) NOT NULL, plz VARCHAR(45) NOT NULL, " +
+                    "birthday VARCHAR(45) NOT NULL, street VARCHAR(45) NOT NULL, plz VARCHAR(45) NOT NULL, " +
                     "city VARCHAR(45) NOT NULL, country VARCHAR(45) NOT NULL, phoneNumber VARCHAR(45) NOT NULL, " +
                     "eMail VARCHAR(45) NOT NULL)");
             statement.executeUpdate();
@@ -61,13 +64,13 @@ public class Database {
         }
     }
 
-    public void addUser(int userID, String firstName, String lastName, int birthday, String street, int plz, String city, String country, String phoneNumber, String eMail){
+    public void addUser(int userID, String firstName, String lastName, String birthday, String street, int plz, String city, String country, String phoneNumber, String eMail){
         try {
             PreparedStatement st = con.prepareStatement("insert into Bank.users values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
             st.setInt(1, userID);
             st.setString(2, firstName);
             st.setString(3, lastName);
-            st.setInt(4, birthday);
+            st.setString(4, birthday);
             st.setString(5, street);
             st.setInt(6, plz);
             st.setString(7, city);
@@ -126,7 +129,38 @@ public class Database {
     }
 
 
+    public boolean checkLogin(int userID, int pw, String rolle){
+        try {
+            String query = "select * from Bank.loginData where userid = " + userID;
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            rs.next();
 
+            if(rs.getInt("password") == pw && rs.getString("rolle").equals(rolle)){
+                return true;
+            } else {
+                return false;
+            }
+
+        }
+        catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return false;
+    }
+
+    public User getUser(int userID){
+
+    }
+
+    public Account getAccount(String iban){
+        try {
+            PreparedStatement st = con.prepareStatement("SELECT userID, bic, balance, 'limit' FROM accounts WHERE iban = ?");
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
 
 
     public void searchData(int userID, String table, String item){
@@ -169,6 +203,57 @@ public class Database {
         }
         finally {
             return rs;
+        }
+    }
+
+
+    public void updateAccount(String column, int change, String iban){
+        try {
+            PreparedStatement st = con.prepareStatement("update Bank.accounts set ? = ? where iban = ?");
+            st.setString(1, column);
+            st.setInt(2, change);
+            st.setString(3, iban);
+            st.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    public void updateUserGeneral(String change, String update, int id){
+        try {
+            PreparedStatement st = con.prepareStatement("update Bank.users set ? = ? where userID = ?");
+            st.setString(1, change);
+            st.setString(2, update);
+            st.setInt(3, id);
+            st.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    public void updateUserResidence(String street, String plz, String city, String country, int id){
+        try {
+            PreparedStatement st = con.prepareStatement("update Bank.users set street = ? set plz = ? set city = ? " +
+                    "set country = ? where userID = ?");
+            st.setString(1, street);
+            st.setString(2, plz);
+            st.setString(3, city);
+            st.setString(4, country);
+            st.setInt(5, id);
+            st.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    public void updateLogin(int userID, String pw){
+        try {
+            PreparedStatement st = con.prepareStatement("update Bank.Login set password = ? where userID = ?");
+            st.setInt(1, userID);
+            st.setString(2, pw);
+            st.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
         }
     }
 

@@ -30,4 +30,8 @@ public class FixedDepositAccount extends Account {
     public void setInterestRate(double interestRate) throws RuntimeException{
         throw new RuntimeException("Der Zinsbetrag auf dem Konto ist fest");
     }
+
+    public void setTerm(int term) {
+        this.term = term;
+    }
 }
