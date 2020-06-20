@@ -6,38 +6,41 @@ import java.util.List;
 public abstract class Account {
 
     private String owner;
+    private int ownerID;
+    private int ownerIDcounter = 1;
     private final String bic;
     private final String iban;
 
     private int balance;
     private boolean covered;
     private double interestRate;
-    private List<Transactions> transactions = new ArrayList<Transactions>();
+    private int limit = 0;
 
     //Der Account Konstruktor
     public Account(String bic, String iban, String owner) {
         this.owner = owner;
         this.bic = bic;
-        if(Numbers.ibancheck(iban)){
+        ownerID = ownerIDcounter;
+        ownerIDcounter++;
+        //if(Numbers.ibancheck(iban)){
             this.iban = iban;
-        } else {
+        //} else {
             System.out.println("Sie haben eine falsche IBAN eingegeben, versuchen Sie es erneut.");
-        }
+        //}
+        Database.data.addAccount(ownerID, iban, bic, balance, limit);
     }
 
     //Methode um Geld auf das Konto einzuzahlen
     public void deposit(int ammount) {
-        Transactions transaction = new Transactions(ammount, "Auf Konto eingezahlt");
+        Transactions transaction = new Transactions(ownerID, ammount, iban, "Wurde eingezahlt");
         balance += ammount;
-        transactions.add(transaction);
     }
 
     //Methode um Geld vom Konto abzuheben
     public void withdraw(int ammount) {
         if (balance - ammount >= 0) {
-            Transactions transaction = new Transactions(ammount, "Von Konto abgehoben");
+            Transactions transaction = new Transactions(ownerID, ammount, "Von Konto abgehoben", iban);
             balance -= ammount;
-            transactions.add(transaction);
             return;
         } else {
             System.out.println("Du hast nicht genug Geld auf deinem Konto");
@@ -45,11 +48,10 @@ public abstract class Account {
         }
     }
 
-    public void transfer(int ammount, Account name){
+    public void transfer(int ammount, String iban){
         if (balance - ammount >= 0) {
-            Transactions transaction = new Transactions(ammount, "An " + name.owner + " überwiesen.");
+            Transactions transaction = new Transactions(ownerID, ammount, iban, this.iban);
             balance -= ammount;
-            transactions.add(transaction);
             return;
         } else {
             System.out.println("Du hast nicht genug Geld auf deinem Konto");
@@ -86,12 +88,6 @@ public abstract class Account {
         this.interestRate = interestRate;
     }
 
-    public void getList(){
-        for(Transactions transaction: transactions){
-            System.out.println(transaction);
-        }
-    }
-
     public void setOwner(String owner) {
         this.owner = owner;
     }
@@ -100,7 +96,20 @@ public abstract class Account {
         this.balance = balance;
     }
 
-    public void setList(Transactions transaction){
-        this.transactions.add(transaction);
+    public int getOwnerID() {
+        return ownerID;
+    }
+
+    public int getOwnerIDcounter() {
+        return ownerIDcounter;
+    }
+
+    public int getLimit() {
+        return limit;
+    }
+
+    //Setter für das Limit
+    public void setLimit(int limit) {
+        this.limit = limit;
     }
 }

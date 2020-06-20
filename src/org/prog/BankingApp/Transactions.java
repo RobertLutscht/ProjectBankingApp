@@ -5,13 +5,20 @@ import java.util.Date;
 public class Transactions {
     private String date;;
     private int ammount;
-    private String destination;
+    private String toIban;
+    private String fromIban;
+    private int transactionID;
+    private int countingID = 1;
 
-    public Transactions(int ammount, String destination){
+    public Transactions(int userID, int ammount, String destination, String fromIban){
         Date date = new Date();
         this.date = date.toString();
         this.ammount = ammount;
-        this.destination = destination;
+        this.toIban = destination;
+        this.fromIban = fromIban;
+        this.transactionID = countingID;
+        countingID++;
+        Database.data.addTransaction(userID, transactionID, this.fromIban, toIban, this.date, this.ammount);
     }
 
     public String getDate() {
@@ -22,7 +29,19 @@ public class Transactions {
         return ammount;
     }
 
-    public String getDestination() {
-        return destination;
+    public String gettoIban() {
+        return toIban;
+    }
+
+    public String getFromIban() {
+        return fromIban;
+    }
+
+    public int getTransactionID() {
+        return transactionID;
+    }
+
+    public int getCountingID() {
+        return countingID;
     }
 }

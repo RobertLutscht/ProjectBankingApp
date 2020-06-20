@@ -3,12 +3,11 @@ package org.prog.BankingApp;
 public class Creditcard extends Account {
 
     private boolean overdrawn;
-    private int limit;
 
     //Konstruktor
     public Creditcard(String owner, int limit, String bic,String iban){
         super(bic, iban, owner);
-        this.limit = limit;
+        this.setLimit(limit);
     }
 
     @Override
@@ -17,11 +16,10 @@ public class Creditcard extends Account {
     }
 
     @Override
-    public void transfer(int ammount, Account name) {
-        if (getBalance() + limit - ammount >= 0) {
-            Transactions transaction = new Transactions(ammount, "Von Konto abgehoben");
+    public void transfer(int ammount, String iban) {
+        if (getBalance() + getLimit() - ammount >= 0) {
+            Transactions transaction = new Transactions(this.getOwnerID(), ammount, this.getIban(), iban);
             setBalance(getBalance() - ammount);
-            setList(transaction);
             return;
         } else {
             System.out.println("Du hast nicht genug Geld auf deinem Konto");
@@ -29,17 +27,8 @@ public class Creditcard extends Account {
         }
     }
 
-    //Setter für das Limit
-    public void setLimit(int limit) {
-        this.limit = limit;
-    }
-
     //Getter aller Variablen
     public boolean isOverdrawn() {
         return overdrawn;
-    }
-
-    public int getLimit() {
-        return limit;
     }
 }
