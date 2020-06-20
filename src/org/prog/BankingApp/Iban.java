@@ -16,8 +16,13 @@ public class Iban {
 public static String knr;
 public static String blz;
 
+<<<<<<< HEAD
     public static String convertKnrBlzToIBAN(int accID){
         knr = String.valueOf(accID);
+=======
+    public static String convertKnrBlzToIBAN(int accId){
+        knr = String.valueOf(accId);
+>>>>>>> acf8665126cf95c83a1dd9979cfdf29ddc26f05f
         blz = "18718769";
         // zehnstellige Kontonummer
         if(knr.length() < 10){

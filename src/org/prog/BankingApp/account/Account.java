@@ -19,7 +19,7 @@ public abstract class Account {
     //Der Account Konstruktor
     public Account(int ownerID) {
         this.ownerID = ownerID;
-        this.accountID = 
+        this.accountID =
         this.IBAN = Iban.convertKnrBlzToIBAN(accountID);
         Database.data.addAccount(ownerID, IBAN, bic, balance, limit);
     }
