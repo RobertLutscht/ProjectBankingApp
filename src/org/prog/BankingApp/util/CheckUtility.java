@@ -1,8 +1,8 @@
-package org.prog.BankingApp;
+package org.prog.BankingApp.util;
 
 import java.math.BigInteger;
 
-public class checkUtility {
+public class CheckUtility {
 
 
     public static boolean ibancheck(String iban) {
