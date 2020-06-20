@@ -1,11 +1,13 @@
-package org.prog.BankingApp;
+package org.prog.BankingApp.account;
 
-public class FixedDepositAccount extends Account{
+import org.prog.BankingApp.account.Account;
+
+public class FixedDepositAccount extends Account {
 
     private int term;
 
-    public FixedDepositAccount(int ownerID, String bic, int term){
-        super(bic, ownerID);
+    public FixedDepositAccount(int ownerID, int term){
+        super(ownerID);
         this.term = term;
     }
 

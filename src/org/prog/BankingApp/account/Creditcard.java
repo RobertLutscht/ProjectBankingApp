@@ -1,12 +1,15 @@
-package org.prog.BankingApp;
+package org.prog.BankingApp.account;
+
+import org.prog.BankingApp.Transactions;
+import org.prog.BankingApp.account.Account;
 
 public class Creditcard extends Account {
 
     private boolean overdrawn;
 
     //Konstruktor
-    public Creditcard(int ownerID, int limit, String bic){
-        super(bic, ownerID);
+    public Creditcard(int ownerID, int limit){
+        super(ownerID);
         this.setLimit(limit);
     }
 

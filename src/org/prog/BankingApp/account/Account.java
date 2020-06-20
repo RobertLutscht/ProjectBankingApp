@@ -1,12 +1,16 @@
-package org.prog.BankingApp;
+package org.prog.BankingApp.account;
+
+import org.prog.BankingApp.Database;
+import org.prog.BankingApp.Iban;
+import org.prog.BankingApp.Transactions;
 
 public abstract class Account {
 
 
     private int ownerID;
-    private final String BIC;
+    private static String bic = "EinsAchtZwiebel";
     private final String IBAN;
-    private static int accountID;
+    private int accountID;
     private int accountIDcounter = 1;
 
 
@@ -16,8 +20,7 @@ public abstract class Account {
     private int limit = 0;
 
     //Der Account Konstruktor
-    public Account(String bic, int ownerID) {
-        this.BIC = bic;
+    public Account(int ownerID) {
         this.ownerID = ownerID;
         this.accountID = accountIDcounter;
         accountIDcounter++;
@@ -26,7 +29,7 @@ public abstract class Account {
         //} else {
             System.out.println("Sie haben eine falsche IBAN eingegeben, versuchen Sie es erneut.");
         //}
-        Database.data.addAccount(ownerID, IBAN, BIC, balance, limit);
+        Database.data.addAccount(ownerID, IBAN, bic, balance, limit);
     }
 
     //Methode um Geld auf das Konto einzuzahlen
@@ -60,8 +63,8 @@ public abstract class Account {
 
     //getter Methoden für alle Variablen
 
-    public String getBIC() {
-        return BIC;
+    public String getBic() {
+        return bic;
     }
 
     public String getIBAN() {
@@ -100,6 +103,10 @@ public abstract class Account {
 
     public int getLimit() {
         return limit;
+    }
+
+    public int getAccountID() {
+        return accountID;
     }
 
     //Setter für das Limit

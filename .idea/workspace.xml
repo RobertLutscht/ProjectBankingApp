@@ -20,15 +20,19 @@
       <path>
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
         <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="BRANCH:master" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:Account" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </select>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a5493ed1-1379-4c90-939b-424e649674c6" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/org/prog/BankingApp/CheckingAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/prog/BankingApp/CheckingAccount.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/prog/BankingApp/Creditcard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/prog/BankingApp/Creditcard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/prog/BankingApp/FixedDepositAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/prog/BankingApp/FixedDepositAccount.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/prog/BankingApp/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/prog/BankingApp/account/Account.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/prog/BankingApp/CheckingAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/prog/BankingApp/account/CheckingAccount.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/prog/BankingApp/Creditcard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/prog/BankingApp/account/Creditcard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/prog/BankingApp/FixedDepositAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/prog/BankingApp/account/FixedDepositAccount.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/prog/BankingApp/Iban.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/prog/BankingApp/Iban.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/prog/BankingApp/Numbers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/prog/BankingApp/checkUtility.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,7 +89,7 @@
       <module name="ProjectBankingApp" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.prog.BankingApp.*" />
+          <option name="PATTERN" value="org.prog.BankingApp.account.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -129,7 +133,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="master" />
+                        <option value="Account" />
                       </list>
                     </value>
                   </entry>
@@ -151,10 +155,10 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="414" y="195" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1592557432662" />
-    <state x="765" y="241" key="#com.intellij.ide.util.MemberChooser" timestamp="1592646450230">
+    <state x="765" y="241" key="#com.intellij.ide.util.MemberChooser" timestamp="1592660668492">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="765" y="241" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1080@0.0.1920.1080" timestamp="1592646450230" />
+    <state x="765" y="241" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1080@0.0.1920.1080" timestamp="1592660668492" />
     <state x="509" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1592647959150">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>

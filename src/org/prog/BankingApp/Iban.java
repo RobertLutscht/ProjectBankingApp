@@ -1,5 +1,7 @@
 package org.prog.BankingApp;
 
+import org.prog.BankingApp.account.*;
+
 import java.math.BigInteger;
 
 public class Iban {
@@ -15,8 +17,9 @@ public static String knr;
 public static String blz;
 
     public static String convertKnrBlzToIBAN(){
-        knr = String.valueOf(Account.getAccountID());
-    blz = "18718769";
+        Account acc = new Creditcard();
+        knr = String.valueOf(acc.getAccountID());
+        blz = "18718769";
         // zehnstellige Kontonummer
         if(knr.length() < 10){
             int anz = 10 - knr.length();
