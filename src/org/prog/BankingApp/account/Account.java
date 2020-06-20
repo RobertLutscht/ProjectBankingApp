@@ -4,6 +4,7 @@ import org.prog.BankingApp.database.Database;
 import org.prog.BankingApp.Iban;
 import org.prog.BankingApp.Transactions;
 import org.prog.BankingApp.database.IdGetter;
+import org.prog.BankingApp.util.CheckUtility;
 
 public abstract class Account {
 
@@ -30,6 +31,7 @@ public abstract class Account {
     public void deposit(int ammount) {
         Transactions transaction = new Transactions(ownerID, ammount, IBAN, "Wurde eingezahlt");
         balance += ammount;
+        Database.data.updateAccount("balance", balance, this.IBAN);
     }
 
     //Methode um Geld vom Konto abzuheben
@@ -37,25 +39,30 @@ public abstract class Account {
         if (balance - ammount >= 0) {
             Transactions transaction = new Transactions(ownerID, ammount, "Von Konto abgehoben", IBAN);
             balance -= ammount;
-            return;
+            Database.data.updateAccount("balance", balance, this.IBAN);
         } else {
             System.out.println("Du hast nicht genug Geld auf deinem Konto");
-            return;
         }
     }
 
     public void transfer(int ammount, String iban){
-        if (balance - ammount >= 0) {
-            Transactions transaction = new Transactions(ownerID, ammount, iban, this.IBAN);
-            balance -= ammount;
-            return;
+        if(CheckUtility.ibancheck(iban)) {
+
+            if (balance - ammount >= 0) {
+                Transactions transaction = new Transactions(ownerID, ammount, iban, this.IBAN);
+                balance -= ammount;
+                Database.data.updateAccount("balance", balance, this.IBAN);
+
+            } else {
+                System.out.println("Du hast nicht genug Geld auf deinem Konto");
+            }
+
         } else {
-            System.out.println("Du hast nicht genug Geld auf deinem Konto");
-            return;
+            System.out.println("Fehlerhafte Iban");
         }
     }
 
-
+    //getter für Variablen
 
     public String getIBAN() {
         return IBAN;
