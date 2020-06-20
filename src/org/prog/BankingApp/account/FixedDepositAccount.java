@@ -12,22 +12,22 @@ public class FixedDepositAccount extends Account {
     }
 
     @Override
-    public void setLimit(int limit) {
-        System.out.println("Sie haben kein Zugriff auf Ihr Geld");
+    public void setLimit(int limit) throws RuntimeException{
+        throw new RuntimeException("Sie haben kein Zugriff auf das Geld");
     }
 
     @Override
-    public void withdraw(int ammount) {
-        System.out.println("Sie haben kein Zugriff bis der Vertrag ausgelaufen ist.");
+    public void withdraw(int ammount) throws RuntimeException{
+        throw new RuntimeException("Sie haben kein Zugriff auf das Geld");
     }
 
     @Override
-    public void transfer(int ammount, String iban) {
-        System.out.println("Sie haben kein Zugriff bis der Vertrag ausgelaufen ist.");
+    public void transfer(int ammount, String iban) throws RuntimeException{
+        throw new RuntimeException("Sie haben kein Zugriff auf das Geld");
     }
 
     @Override
-    public void setInterestRate(double interestRate) {
-        System.out.println("Der Zinsbetrag auf diesem Konto ist fest.");
+    public void setInterestRate(double interestRate) throws RuntimeException{
+        throw new RuntimeException("Der Zinsbetrag auf dem Konto ist fest");
     }
 }

@@ -8,7 +8,7 @@ public class CheckingAccount extends Account {
     }
 
     @Override
-    public void setLimit(int limit) {
-        System.out.println("Das Limit ist 0€");
+    public void setLimit(int limit) throws RuntimeException{
+        throw new RuntimeException("Das Limit auf dem Konto ist 0€");
     }
 }

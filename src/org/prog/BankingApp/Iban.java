@@ -16,8 +16,7 @@ public class Iban {
 public static String knr;
 public static String blz;
 
-    public static String convertKnrBlzToIBAN(){
-        Account acc = new Creditcard();
+    public static String convertKnrBlzToIBAN(Account acc){
         knr = String.valueOf(acc.getAccountID());
         blz = "18718769";
         // zehnstellige Kontonummer
@@ -34,12 +33,7 @@ public static String blz;
 
         // String in eine Zahl konvertieren
         BigInteger checkIBANSum;
-        try {
-            checkIBANSum = new BigInteger(checkIBAN);
-        } catch (Exception e) {
-            // TODO:FEHLER RICHTIG behandeln!!!!
-            return "Fehler";
-        }
+        checkIBANSum = new BigInteger(checkIBAN);
 
         // Modulo rechnen
         BigInteger faktor = new BigInteger("97");

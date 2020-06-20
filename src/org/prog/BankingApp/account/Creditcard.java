@@ -14,19 +14,26 @@ public class Creditcard extends Account {
     }
 
     @Override
-    public void withdraw(int ammount) {
-        System.out.println("Sie können nicht von Ihrer Kreditkarte Geld abheben.");
+    public void withdraw(int ammount) throws RuntimeException{
+        throw new RuntimeException("Sie können kein Geld von Ihrer Kreditkarte abheben");
     }
 
     @Override
-    public void transfer(int ammount, String iban) {
+    public void transfer(int ammount, String iban) throws RuntimeException{
         if (getBalance() + getLimit() - ammount >= 0) {
             Transactions transaction = new Transactions(this.getOwnerID(), ammount, this.getIBAN(), iban);
             setBalance(getBalance() - ammount);
-            return;
+            overdrawn = checkOverdraw();
         } else {
-            System.out.println("Du hast nicht genug Geld auf deinem Konto");
-            return;
+            throw new RuntimeException("Sie haben nicht genug Geld auf dem Konto");
+        }
+    }
+
+    private boolean checkOverdraw(){
+        if(getBalance() < 0){
+            return true;
+        } else {
+            return false;
         }
     }
 

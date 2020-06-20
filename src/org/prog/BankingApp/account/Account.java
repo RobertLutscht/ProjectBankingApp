@@ -11,24 +11,16 @@ public abstract class Account {
     private static String bic = "EinsAchtZwiebel";
     private final String IBAN;
     private int accountID;
-    private int accountIDcounter = 1;
-
 
     private int balance;
-    private boolean covered;
     private double interestRate;
     private int limit = 0;
 
     //Der Account Konstruktor
     public Account(int ownerID) {
         this.ownerID = ownerID;
-        this.accountID = accountIDcounter;
-        accountIDcounter++;
-        //if(Numbers.ibancheck(iban)){
-            this.IBAN = Iban.convertKnrBlzToIBAN();
-        //} else {
-            System.out.println("Sie haben eine falsche IBAN eingegeben, versuchen Sie es erneut.");
-        //}
+        this.accountID =
+        this.IBAN = Iban.convertKnrBlzToIBAN();
         Database.data.addAccount(ownerID, IBAN, bic, balance, limit);
     }
 
@@ -61,7 +53,7 @@ public abstract class Account {
         }
     }
 
-    //getter Methoden für alle Variablen
+    //getter Methoden für Variablen
 
     public String getBic() {
         return bic;
@@ -75,30 +67,12 @@ public abstract class Account {
         return balance;
     }
 
-    public boolean isCovered() {
-        return covered;
-    }
-
     public double getInterestRate() {
         return interestRate;
     }
 
-    public void setInterestRate(double interestRate) {
-        this.interestRate = interestRate;
-    }
-
-
-    public void setBalance(int balance) {
-        this.balance = balance;
-    }
-
     public int getOwnerID() {
         return ownerID;
-    }
-
-
-    public void setOwnerID(int ownerID) {
-        this.ownerID = ownerID;
     }
 
     public int getLimit() {
@@ -109,7 +83,21 @@ public abstract class Account {
         return accountID;
     }
 
-    //Setter für das Limit
+    //setter für Variablen
+
+    public void setInterestRate(double interestRate) {
+        this.interestRate = interestRate;
+    }
+
+    public void setBalance(int balance) {
+        this.balance = balance;
+    }
+
+
+    public void setOwnerID(int ownerID) {
+        this.ownerID = ownerID;
+    }
+
     public void setLimit(int limit) {
         this.limit = limit;
     }
