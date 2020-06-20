@@ -1,32 +1,29 @@
-package org.prog.BankingApp;
+package org.prog.BankingApp.account;
+
+import org.prog.BankingApp.database.Database;
+import org.prog.BankingApp.Iban;
+import org.prog.BankingApp.Transactions;
+import org.prog.BankingApp.database.IdGetter;
 
 public abstract class Account {
 
 
     private int ownerID;
-    private final String BIC;
+    public static final String BIC = "EinsAchtZwiebel";
     private final String IBAN;
-    private static int accountID;
-    private int accountIDcounter = 1;
+    private int accountID;
 
 
     private int balance;
-    private boolean covered;
     private double interestRate;
     private int limit = 0;
 
     //Der Account Konstruktor
-    public Account(String bic, int ownerID) {
-        this.BIC = bic;
+    public Account(int ownerID) {
         this.ownerID = ownerID;
-        this.accountID = accountIDcounter;
-        accountIDcounter++;
-        //if(Numbers.ibancheck(iban)){
-            this.IBAN = Iban.convertKnrBlzToIBAN();;
-        //} else {
-            System.out.println("Sie haben eine falsche IBAN eingegeben, versuchen Sie es erneut.");
-        //}
-        Database.data.addAccount(ownerID, IBAN, bic, balance, limit);
+        this.accountID = IdGetter.getNextAccId();
+        this.IBAN = Iban.convertKnrBlzToIBAN(accountID);
+        Database.data.addAccount(ownerID, IBAN, accountID, BIC, balance, limit);
     }
 
     //Methode um Geld auf das Konto einzuzahlen
@@ -58,11 +55,7 @@ public abstract class Account {
         }
     }
 
-    //getter Methoden für alle Variablen
 
-    public String getBIC() {
-        return BIC;
-    }
 
     public String getIBAN() {
         return IBAN;
@@ -72,48 +65,39 @@ public abstract class Account {
         return balance;
     }
 
-    public boolean isCovered() {
-        return covered;
-    }
-
     public double getInterestRate() {
         return interestRate;
-    }
-
-    public void setInterestRate(double interestRate) {
-        this.interestRate = interestRate;
-    }
-
-
-    public void setBalance(int balance) {
-        this.balance = balance;
     }
 
     public int getOwnerID() {
         return ownerID;
     }
 
-
-    public static int getAccountID() {
-        return accountID;
-    }
-
-    public int getAccountIDcounter() {
-        return accountIDcounter;
-    }
-
     public int getLimit() {
         return limit;
     }
 
-    //Setter für das Limit
-    public void setLimit(int limit) {
-        this.limit = limit;
+    public int getAccountID() {
+        return accountID;
+    }
+
+    //setter für Variablen
+
+    public void setInterestRate(double interestRate) {
+        this.interestRate = interestRate;
+    }
+
+    public void setBalance(int balance) {
+        this.balance = balance;
     }
 
 
     public void setOwnerID(int ownerID) {
         this.ownerID = ownerID;
-
     }
+
+    public void setLimit(int limit) {
+        this.limit = limit;
+    }
+
 }

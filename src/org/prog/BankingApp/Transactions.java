@@ -1,5 +1,7 @@
 package org.prog.BankingApp;
 
+import org.prog.BankingApp.database.Database;
+
 import java.util.Date;
 
 public class Transactions {

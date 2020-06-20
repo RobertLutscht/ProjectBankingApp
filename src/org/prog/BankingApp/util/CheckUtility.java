@@ -1,11 +1,11 @@
-package org.prog.BankingApp;
+package org.prog.BankingApp.util;
 
 import java.math.BigInteger;
 
-public class Numbers {
+public class CheckUtility {
+
 
     public static boolean ibancheck(String iban) {
-
 
         boolean check = false;
 
