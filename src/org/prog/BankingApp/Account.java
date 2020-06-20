@@ -2,11 +2,13 @@ package org.prog.BankingApp;
 
 public abstract class Account {
 
-    private String owner;
+
     private int ownerID;
-    private int ownerIDcounter = 1;
     private final String BIC;
     private final String IBAN;
+    private static int accountID;
+    private int accountIDcounter = 1;
+
 
     private int balance;
     private boolean covered;
@@ -14,13 +16,13 @@ public abstract class Account {
     private int limit = 0;
 
     //Der Account Konstruktor
-    public Account(String bic, String iban, String owner) {
-        this.owner = owner;
+    public Account(String bic, int ownerID) {
         this.BIC = bic;
-        ownerID = ownerIDcounter;
-        ownerIDcounter++;
+        this.ownerID = ownerID;
+        this.accountID = accountIDcounter;
+        accountIDcounter++;
         //if(Numbers.ibancheck(iban)){
-            this.IBAN = iban;
+            this.IBAN = Iban.convertKnrBlzToIBAN();
         //} else {
             System.out.println("Sie haben eine falsche IBAN eingegeben, versuchen Sie es erneut.");
         //}
@@ -57,9 +59,6 @@ public abstract class Account {
     }
 
     //getter Methoden für alle Variablen
-    public String getOwner() {
-        return owner;
-    }
 
     public String getBIC() {
         return BIC;
@@ -85,9 +84,6 @@ public abstract class Account {
         this.interestRate = interestRate;
     }
 
-    public void setOwner(String owner) {
-        this.owner = owner;
-    }
 
     public void setBalance(int balance) {
         this.balance = balance;
@@ -97,8 +93,9 @@ public abstract class Account {
         return ownerID;
     }
 
-    public int getOwnerIDcounter() {
-        return ownerIDcounter;
+
+    public void setOwnerID(int ownerID) {
+        this.ownerID = ownerID;
     }
 
     public int getLimit() {
@@ -109,4 +106,5 @@ public abstract class Account {
     public void setLimit(int limit) {
         this.limit = limit;
     }
+
 }
