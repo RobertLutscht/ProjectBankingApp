@@ -1,4 +1,4 @@
-package org.prog.BankingApp;
+package org.prog.BankingApp.database;
 
 import java.sql.*;
 

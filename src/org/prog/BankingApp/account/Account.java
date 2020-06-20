@@ -1,6 +1,6 @@
 package org.prog.BankingApp.account;
 
-import org.prog.BankingApp.Database;
+import org.prog.BankingApp.database.Database;
 import org.prog.BankingApp.Iban;
 import org.prog.BankingApp.Transactions;
 
@@ -8,7 +8,7 @@ public abstract class Account {
 
 
     private int ownerID;
-    private static String bic = "EinsAchtZwiebel";
+    public static final String BIC = "EinsAchtZwiebel";
     private final String IBAN;
     private int accountID;
 
@@ -20,7 +20,7 @@ public abstract class Account {
     public Account(int ownerID) {
         this.ownerID = ownerID;
         this.IBAN = Iban.convertKnrBlzToIBAN(accountID);
-        Database.data.addAccount(ownerID, IBAN, bic, balance, limit);
+        Database.data.addAccount(ownerID, IBAN, BIC, balance, limit);
     }
 
     //Methode um Geld auf das Konto einzuzahlen
@@ -52,11 +52,7 @@ public abstract class Account {
         }
     }
 
-    //getter Methoden für Variablen
 
-    public String getBic() {
-        return bic;
-    }
 
     public String getIBAN() {
         return IBAN;
