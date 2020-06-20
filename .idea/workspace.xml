@@ -20,8 +20,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c20740d8-ca40-4d73-8365-c919e31068da" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/org/prog/BankingApp/IBAN.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/org/prog/BankingApp/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/prog/BankingApp/Account.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/prog/BankingApp/IBAN.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/prog/BankingApp/IBAN.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,7 +66,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1592649520005</updated>
-      <workItem from="1592649523624" duration="2589000" />
+      <workItem from="1592649523624" duration="5332000" />
     </task>
     <servers />
   </component>
@@ -82,5 +83,11 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="765" y="221" key="#com.intellij.ide.util.MemberChooser" timestamp="1592654128130">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="765" y="221" key="#com.intellij.ide.util.MemberChooser/1920.0.1707.942/0.0.1920.1040/1208.-1080.1920.1040@0.0.1920.1040" timestamp="1592654128130" />
   </component>
 </project>

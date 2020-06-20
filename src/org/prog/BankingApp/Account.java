@@ -9,7 +9,7 @@ public abstract class Account {
     private int ownerID;
     private final String bic;
     private final String iban;
-    private int accountID;
+    private static int accountID;
     private int accountIDcounter = 1;
 
     private int balance;
@@ -18,13 +18,14 @@ public abstract class Account {
     private int limit = 0;
 
     //Der Account Konstruktor
-    public Account(String bic, String iban, int ownerID) {
+    public Account(String bic, int ownerID) {
         this.bic = bic;
         this.ownerID = ownerID;
         this.accountID = accountIDcounter;
         accountIDcounter++;
         //if(Numbers.ibancheck(iban)){
-            this.iban = iban;
+        
+            this.iban = IBAN.convertKnrBlzToIBAN();
         //} else {
             System.out.println("Sie haben eine falsche IBAN eingegeben, versuchen Sie es erneut.");
         //}
@@ -61,9 +62,6 @@ public abstract class Account {
     }
 
     //getter Methoden für alle Variablen
-    public String getOwner() {
-        return owner;
-    }
 
     public String getBic() {
         return bic;
@@ -89,9 +87,6 @@ public abstract class Account {
         this.interestRate = interestRate;
     }
 
-    public void setOwner(String owner) {
-        this.owner = owner;
-    }
 
     public void setBalance(int balance) {
         this.balance = balance;
@@ -101,10 +96,6 @@ public abstract class Account {
         return ownerID;
     }
 
-    public int getOwnerIDcounter() {
-        return ownerIDcounter;
-    }
-
     public int getLimit() {
         return limit;
     }
@@ -112,5 +103,9 @@ public abstract class Account {
     //Setter für das Limit
     public void setLimit(int limit) {
         this.limit = limit;
+    }
+
+    public static int getAccountID() {
+        return accountID;
     }
 }
