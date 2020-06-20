@@ -25,8 +25,11 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="40c301b4-c14b-45bb-a8be-e818dec4ce61" name="Default Changelist" comment="">
+    <list default="true" id="a5493ed1-1379-4c90-939b-424e649674c6" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/org/prog/BankingApp/Iban.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/prog/BankingApp/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/prog/BankingApp/Account.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/prog/BankingApp/IBAN.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
