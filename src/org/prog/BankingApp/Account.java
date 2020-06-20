@@ -5,11 +5,12 @@ import java.util.List;
 
 public abstract class Account {
 
-    private String owner;
+
     private int ownerID;
-    private int ownerIDcounter = 1;
     private final String bic;
     private final String iban;
+    private int accountID;
+    private int accountIDcounter = 1;
 
     private int balance;
     private boolean covered;
@@ -17,11 +18,11 @@ public abstract class Account {
     private int limit = 0;
 
     //Der Account Konstruktor
-    public Account(String bic, String iban, String owner) {
-        this.owner = owner;
+    public Account(String bic, String iban, int ownerID) {
         this.bic = bic;
-        ownerID = ownerIDcounter;
-        ownerIDcounter++;
+        this.ownerID = ownerID;
+        this.accountID = accountIDcounter;
+        accountIDcounter++;
         //if(Numbers.ibancheck(iban)){
             this.iban = iban;
         //} else {
