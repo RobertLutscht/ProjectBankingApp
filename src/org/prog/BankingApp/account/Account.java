@@ -3,6 +3,7 @@ package org.prog.BankingApp.account;
 import org.prog.BankingApp.database.Database;
 import org.prog.BankingApp.Iban;
 import org.prog.BankingApp.Transactions;
+import org.prog.BankingApp.database.IdGetter;
 
 public abstract class Account {
 
@@ -19,9 +20,9 @@ public abstract class Account {
     //Der Account Konstruktor
     public Account(int ownerID) {
         this.ownerID = ownerID;
-        this.accountID =
+        this.accountID = IdGetter.getNextAccId();
         this.IBAN = Iban.convertKnrBlzToIBAN(accountID);
-        Database.data.addAccount(ownerID, IBAN, BIC, balance, limit);
+        Database.data.addAccount(ownerID, IBAN, accountID, BIC, balance, limit);
     }
 
     //Methode um Geld auf das Konto einzuzahlen

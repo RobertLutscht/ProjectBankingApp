@@ -1,5 +1,6 @@
 package org.prog.BankingApp.database;
 
+import javax.xml.xpath.XPathEvaluationResult;
 import java.sql.*;
 
 public class Database {
@@ -30,7 +31,7 @@ public class Database {
         }
 
         try {
-            PreparedStatement statement = con.prepareStatement("CREATE TABLE IF NOT EXISTS accounts (userID INTEGER, iban TEXT, bic TEXT, balance INTEGER, limit INTEGER");
+            PreparedStatement statement = con.prepareStatement("CREATE TABLE IF NOT EXISTS accounts (userID INTEGER, iban TEXT, kontonummer INTEGER, bic TEXT, balance INTEGER, limit INTEGER");
             statement.execute();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -71,14 +72,15 @@ public class Database {
         }
     }
 
-    public void addAccount(int userID, String iban, String bic, int balance, int limit){
+    public void addAccount(int userID, String iban, int knr, String bic, int balance, int limit){
         try {
-            PreparedStatement st = con.prepareStatement("insert into Bank.accounts values (?, ?, ?, ?, ?)");
+            PreparedStatement st = con.prepareStatement("insert into Bank.accounts values (?, ?, ?, ?, ?, ?)");
             st.setInt(1, userID);
             st.setString(2, iban);
-            st.setString(3, bic);
-            st.setInt(4, balance);
-            st.setInt(5, limit);
+            st.setInt(3, knr);
+            st.setString(4, bic);
+            st.setInt(5, balance);
+            st.setInt(6, limit);
             st.executeUpdate();
             System.out.println("Konto wurde hinzugefügt");
         } catch (SQLException throwables) {
@@ -161,4 +163,19 @@ public class Database {
         }
     }
 
+
+    public int getMaxId(String id, String table){
+        String query = "select MAX " + id + " FROM bank." + table;
+        int ergebnis = 0;
+        try {
+            Statement st = con.createStatement();
+             ResultSet rs = st.executeQuery(query);
+             rs.next();
+             ergebnis = Integer.parseInt(rs.toString());
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } finally {
+            return ergebnis;
+        }
+    }
 }
