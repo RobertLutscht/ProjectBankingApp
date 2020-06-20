@@ -18,7 +18,7 @@ public class Creditcard extends Account {
     @Override
     public void transfer(int ammount, String iban) {
         if (getBalance() + getLimit() - ammount >= 0) {
-            Transactions transaction = new Transactions(this.getOwnerID(), ammount, this.getIban(), iban);
+            Transactions transaction = new Transactions(this.getOwnerID(), ammount, this.getIBAN(), iban);
             setBalance(getBalance() - ammount);
             return;
         } else {

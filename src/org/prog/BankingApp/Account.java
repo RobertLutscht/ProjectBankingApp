@@ -1,15 +1,12 @@
 package org.prog.BankingApp;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public abstract class Account {
 
     private String owner;
     private int ownerID;
     private int ownerIDcounter = 1;
-    private final String bic;
-    private final String iban;
+    private final String BIC;
+    private final String IBAN;
 
     private int balance;
     private boolean covered;
@@ -19,27 +16,27 @@ public abstract class Account {
     //Der Account Konstruktor
     public Account(String bic, String iban, String owner) {
         this.owner = owner;
-        this.bic = bic;
+        this.BIC = bic;
         ownerID = ownerIDcounter;
         ownerIDcounter++;
         //if(Numbers.ibancheck(iban)){
-            this.iban = iban;
+            this.IBAN = iban;
         //} else {
             System.out.println("Sie haben eine falsche IBAN eingegeben, versuchen Sie es erneut.");
         //}
-        Database.data.addAccount(ownerID, iban, bic, balance, limit);
+        Database.data.addAccount(ownerID, IBAN, BIC, balance, limit);
     }
 
     //Methode um Geld auf das Konto einzuzahlen
     public void deposit(int ammount) {
-        Transactions transaction = new Transactions(ownerID, ammount, iban, "Wurde eingezahlt");
+        Transactions transaction = new Transactions(ownerID, ammount, IBAN, "Wurde eingezahlt");
         balance += ammount;
     }
 
     //Methode um Geld vom Konto abzuheben
     public void withdraw(int ammount) {
         if (balance - ammount >= 0) {
-            Transactions transaction = new Transactions(ownerID, ammount, "Von Konto abgehoben", iban);
+            Transactions transaction = new Transactions(ownerID, ammount, "Von Konto abgehoben", IBAN);
             balance -= ammount;
             return;
         } else {
@@ -50,7 +47,7 @@ public abstract class Account {
 
     public void transfer(int ammount, String iban){
         if (balance - ammount >= 0) {
-            Transactions transaction = new Transactions(ownerID, ammount, iban, this.iban);
+            Transactions transaction = new Transactions(ownerID, ammount, iban, this.IBAN);
             balance -= ammount;
             return;
         } else {
@@ -64,12 +61,12 @@ public abstract class Account {
         return owner;
     }
 
-    public String getBic() {
-        return bic;
+    public String getBIC() {
+        return BIC;
     }
 
-    public String getIban() {
-        return iban;
+    public String getIBAN() {
+        return IBAN;
     }
 
     public int getBalance() {
