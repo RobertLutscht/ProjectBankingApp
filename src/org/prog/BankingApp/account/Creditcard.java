@@ -13,8 +13,8 @@ public class Creditcard extends Account {
         super(ownerID);
         this.setLimit(limit);
         setKind(2);
-        Database.data.updateAccount("kind", 2, getIBAN());
-        Database.data.updateAccount("limit", getLimit(), getIBAN());
+        //Database.data.updateAccount("kind", 2, getIBAN());
+        //Database.data.updateAccount("limit", getLimit(), getIBAN());
     }
 
     public Creditcard(int ownerID, String iban, int accountId, String bic, int balance, int limit){

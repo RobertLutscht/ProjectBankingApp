@@ -1,10 +1,7 @@
 package org.prog.BankingApp.ui;
 
 import org.prog.BankingApp.Main;
-import org.prog.BankingApp.ui.dialog.DepositPopUp;
-import org.prog.BankingApp.ui.dialog.SearchDialog;
-import org.prog.BankingApp.ui.dialog.TransferPopUp;
-import org.prog.BankingApp.ui.dialog.WithdrawPopUp;
+import org.prog.BankingApp.ui.dialog.*;
 import org.prog.BankingApp.user.User;
 
 import javax.swing.*;
@@ -68,11 +65,16 @@ public class WorkInterface extends JFrame{
         JMenuItem search = new JMenuItem("Suchen");
         JMenuItem updateGeneral = new JMenuItem("Informationen updaten");
         JMenuItem updateResidence = new JMenuItem("Wohnsitz updaten");
+        JMenuItem addKonto = new JMenuItem("Ein Konto eröffnen");
+        JMenuItem removeKonto = new JMenuItem("Ein Konto auflösen");
 
         file.add(search);
         file.addSeparator();
         file.add(updateGeneral);
         file.add(updateResidence);
+        file.addSeparator();
+        file.add(addKonto);
+        file.add(removeKonto);
         menu.add(file);
         setJMenuBar(menu);
 
@@ -98,6 +100,19 @@ public class WorkInterface extends JFrame{
             }
         });
 
+        addKonto.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Main.add = new AddKontoDialog(user);
+            }
+        });
+
+        removeKonto.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
     }
 
 }

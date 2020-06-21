@@ -7,6 +7,7 @@ import org.prog.BankingApp.account.FixedDepositAccount;
 import org.prog.BankingApp.user.Admin;
 import org.prog.BankingApp.user.User;
 
+import javax.swing.*;
 import java.sql.*;
 
 public class Database {
@@ -81,7 +82,7 @@ public class Database {
             st.setString(9, phoneNumber);
             st.setString(10, eMail);
             st.executeUpdate();
-            System.out.println("User wurde hinzugefügt");
+            JOptionPane.showMessageDialog(null,"User wurde hinzugefügt");
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -99,7 +100,7 @@ public class Database {
             st.setInt(7, term);
             st.setInt(8, kind);
             st.executeUpdate();
-            System.out.println("Konto wurde hinzugefügt");
+            JOptionPane.showMessageDialog(null,"Konto wurde hinzugefügt");
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -116,7 +117,7 @@ public class Database {
             st.setString(5, date);
             st.setInt(6, ammount);
             st.executeUpdate();
-            System.out.println("Transaktion wurde hinzugefügt");
+            JOptionPane.showMessageDialog(null,"Transaktion wurde hinzugefügt");
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -223,21 +224,24 @@ public class Database {
 
         String query = "select " + item + " from bank." + table + " where userID=" + userID;
         ResultSet rs = search(query);
+        String print = "";
+
         try {
 
             int columns = rs.getMetaData().getColumnCount();
 
             for (int i = 1; i <= columns; i++) {
-                System.out.print(rs.getMetaData().getColumnLabel(i) + "\t\t");
+               print += rs.getMetaData().getColumnLabel(i) + "\t\t";
             }
             System.out.println();
 
             while (rs.next()) {
                 for (int i = 1; i <= columns; i++) {
-                    System.out.print(rs.getString(i) + "\t\t");
+                    print += rs.getString(i) + "\t\t";
                 }
-                System.out.println();
+                print += "\n";
             }
+            JOptionPane.showMessageDialog(null, print);
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -288,7 +292,7 @@ public class Database {
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
-            System.out.println("Es gab einen Fehler");
+            JOptionPane.showMessageDialog(null,"Es gab einen Fehler");
         } finally {
             return rs;
         }

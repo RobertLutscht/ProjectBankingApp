@@ -1,5 +1,6 @@
 package org.prog.BankingApp.ui.dialog;
 
+import org.prog.BankingApp.Main;
 import org.prog.BankingApp.user.User;
 
 import javax.swing.*;
@@ -7,11 +8,11 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class SearchDialog extends JDialog {
+public class AddKontoDialog extends JDialog{
 
     GridBagConstraints gbc = new GridBagConstraints();
 
-    public SearchDialog(User user){
+    public AddKontoDialog(User user){
         Container pane = getContentPane();
         pane.setLayout(new GridBagLayout());
 
@@ -23,45 +24,29 @@ public class SearchDialog extends JDialog {
         gbc.insets = new Insets(5, 10, 5, 10);
 
         //Combobox
-        String[] tables = {"accounts", "users"};
-        JComboBox table = new JComboBox(tables);
+        String[] types = {"Kreditkarte", "Giro Konto", "Festgeldkonto"};
+        JComboBox type = new JComboBox(types);
         gbc.gridx = 3;
         gbc.gridy = 1;
         gbc.gridwidth = 4;
         gbc.fill = GridBagConstraints.HORIZONTAL;
-        pane.add(table, gbc);
+        pane.add(type, gbc);
 
 
 
         //Labels
-        JLabel searchtable = new JLabel("Geben Sie hier an in welcher Tabelle Sie suchen wollen");
+        JLabel kind = new JLabel("Geben Sie hier an in welche Art von Konto Sie eröffnen wollen");
         gbc.gridx = 3;
         gbc.gridy = 0;
         gbc.gridwidth = 4;
         gbc.fill = GridBagConstraints.HORIZONTAL;
-        pane.add(searchtable, gbc);
-
-        JLabel search = new JLabel("Geben Sie hier an wonach Sie suchen wollen");
-        gbc.gridx = 3;
-        gbc.gridy = 5;
-        gbc.gridwidth = 4;
-        gbc.fill = GridBagConstraints.HORIZONTAL;
-        pane.add(search, gbc);
-
-
-        //Textfield
-        JTextField item = new JTextField(20);
-        gbc.gridx = 3;
-        gbc.gridy = 6;
-        gbc.gridwidth = 4;
-        gbc.fill = GridBagConstraints.HORIZONTAL;
-        pane.add(item, gbc);
+        pane.add(kind, gbc);
 
 
         //Button
-        JButton go = new JButton("Suchen");
+        JButton go = new JButton("Eröffnen");
         gbc.gridx = 3;
-        gbc.gridy = 8;
+        gbc.gridy = 4;
         gbc.gridwidth = 2;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         pane.add(go, gbc);
@@ -69,15 +54,22 @@ public class SearchDialog extends JDialog {
         go.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String table_value = table.getSelectedItem().toString();
-                String item_value = item.getText();
 
-                user.search(table_value, item_value);
+                String type_value = type.getSelectedItem().toString();
+                if(type_value.equals("Giro Konto")){
+                    user.newCheckingAccount();
+                }
+                else if(type_value.equals("Kreditkarte")) {
+                    user.newCreditcard();
+                }
+                else if(type_value.equals("Festgeldkonto")){
+                    user.newFixedDepositAccount();
+                }
+
+                Main.add.dispose();
             }
         });
 
         setVisible(true);
     }
-
-
 }

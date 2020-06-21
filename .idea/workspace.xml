@@ -26,15 +26,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a5493ed1-1379-4c90-939b-424e649674c6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/org/prog/BankingApp/ui/dialog/DepositPopUp.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/org/prog/BankingApp/ui/dialog/SearchDialog.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/org/prog/BankingApp/ui/dialog/UpdateGDialog.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/org/prog/BankingApp/ui/dialog/UpdateRDialog.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/org/prog/BankingApp/ui/dialog/WithdrawPopUp.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/prog/BankingApp/ui/dialog/AddKontoDialog.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/org/prog/BankingApp/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/prog/BankingApp/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/prog/BankingApp/ui/TransferDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/prog/BankingApp/ui/dialog/TransferPopUp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/prog/BankingApp/account/Creditcard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/prog/BankingApp/account/Creditcard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/prog/BankingApp/database/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/prog/BankingApp/database/Database.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/org/prog/BankingApp/ui/WorkInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/prog/BankingApp/ui/WorkInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/prog/BankingApp/ui/dialog/SearchDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/prog/BankingApp/ui/dialog/SearchDialog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/prog/BankingApp/user/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/prog/BankingApp/user/Admin.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -162,7 +161,7 @@
       <workItem from="1591712713428" duration="2045000" />
       <workItem from="1592475039101" duration="20514000" />
       <workItem from="1592554784116" duration="30431000" />
-      <workItem from="1592726426662" duration="32757000" />
+      <workItem from="1592726426662" duration="38515000" />
     </task>
     <servers />
   </component>
@@ -206,38 +205,38 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="414" y="195" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1592557432662" />
-    <state x="765" y="241" key="#com.intellij.ide.util.MemberChooser" timestamp="1592756655824">
+    <state x="765" y="241" key="#com.intellij.ide.util.MemberChooser" timestamp="1592765035311">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="765" y="241" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1080@0.0.1920.1080" timestamp="1592756655824" />
+    <state x="765" y="241" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1080@0.0.1920.1080" timestamp="1592765035311" />
     <state x="509" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1592755039533">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="509" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1592755039533" />
-    <state x="690" y="287" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1592571668730">
+    <state x="690" y="287" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1592765387648">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="690" y="287" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1592571668730" />
+    <state x="690" y="287" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1592765387648" />
     <state x="740" y="295" key="FileChooserDialogImpl" timestamp="1592571829596">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="740" y="295" key="FileChooserDialogImpl/0.0.1920.1080@0.0.1920.1080" timestamp="1592571829596" />
-    <state width="1877" height="241" key="GridCell.Tab.0.bottom" timestamp="1592762480642">
+    <state width="1877" height="324" key="GridCell.Tab.0.bottom" timestamp="1592768849766">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1877" height="241" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1592762480642" />
-    <state width="1877" height="241" key="GridCell.Tab.0.center" timestamp="1592762480642">
+    <state width="1877" height="324" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1592768849766" />
+    <state width="1877" height="324" key="GridCell.Tab.0.center" timestamp="1592768849766">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1877" height="241" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1592762480642" />
-    <state width="1877" height="241" key="GridCell.Tab.0.left" timestamp="1592762480642">
+    <state width="1877" height="324" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1592768849766" />
+    <state width="1877" height="324" key="GridCell.Tab.0.left" timestamp="1592768849766">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1877" height="241" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1592762480642" />
-    <state width="1877" height="241" key="GridCell.Tab.0.right" timestamp="1592762480642">
+    <state width="1877" height="324" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1592768849766" />
+    <state width="1877" height="324" key="GridCell.Tab.0.right" timestamp="1592768849766">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1877" height="241" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1592762480642" />
+    <state width="1877" height="324" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1592768849766" />
     <state width="1877" height="363" key="GridCell.Tab.1.bottom" timestamp="1592757422392">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>

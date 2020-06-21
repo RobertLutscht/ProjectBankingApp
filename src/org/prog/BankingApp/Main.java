@@ -1,10 +1,11 @@
 package org.prog.BankingApp;
 
+import org.prog.BankingApp.database.Database;
 import org.prog.BankingApp.ui.*;
-import org.prog.BankingApp.ui.dialog.DepositPopUp;
-import org.prog.BankingApp.ui.dialog.SearchDialog;
-import org.prog.BankingApp.ui.dialog.TransferPopUp;
-import org.prog.BankingApp.ui.dialog.WithdrawPopUp;
+import org.prog.BankingApp.ui.dialog.*;
+import org.prog.BankingApp.user.Admin;
+
+import java.io.PrintStream;
 
 public class Main {
 
@@ -15,8 +16,12 @@ public class Main {
     public static DepositPopUp d;
     public static WithdrawPopUp with;
     public static SearchDialog search;
+    public static AddKontoDialog add;
 
     public static void main(String[] args) {
+        Database.data.initiateDB();
+        Admin admin = new Admin();
+
         f = new LoginFrame();
         f.setVisible(true);
         r.setVisible(true);
@@ -25,5 +30,6 @@ public class Main {
         d.setVisible(true);
         with.setVisible(true);
         search.setVisible(true);
+        add.setVisible(true);
     }
 }
