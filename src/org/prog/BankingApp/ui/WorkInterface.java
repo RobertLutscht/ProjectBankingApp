@@ -1,6 +1,10 @@
 package org.prog.BankingApp.ui;
 
 import org.prog.BankingApp.Main;
+import org.prog.BankingApp.ui.dialog.DepositPopUp;
+import org.prog.BankingApp.ui.dialog.SearchDialog;
+import org.prog.BankingApp.ui.dialog.TransferPopUp;
+import org.prog.BankingApp.ui.dialog.WithdrawPopUp;
 import org.prog.BankingApp.user.User;
 
 import javax.swing.*;
@@ -31,7 +35,7 @@ public class WorkInterface extends JFrame{
         transfer.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Main.t = new TransferDialog(user);
+                Main.t = new TransferPopUp(user);
             }
         });
 
@@ -42,7 +46,7 @@ public class WorkInterface extends JFrame{
         deposit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                Main.d = new DepositPopUp(user);
             }
         });
 
@@ -53,7 +57,7 @@ public class WorkInterface extends JFrame{
         withdraw.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                Main.with = new WithdrawPopUp(user);
             }
         });
 
@@ -72,7 +76,27 @@ public class WorkInterface extends JFrame{
         menu.add(file);
         setJMenuBar(menu);
 
+        search.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Main.search = new SearchDialog(user);
 
+            }
+        });
+
+        updateGeneral.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+
+        updateResidence.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
 
     }
 

@@ -1,4 +1,4 @@
-package org.prog.BankingApp.ui;
+package org.prog.BankingApp.ui.dialog;
 
 import org.prog.BankingApp.Main;
 import org.prog.BankingApp.account.Account;
@@ -10,19 +10,19 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class TransferDialog extends JFrame {
+public class TransferPopUp extends JDialog {
 
     GridBagConstraints gbc = new GridBagConstraints();
 
-    public TransferDialog(User user){
+    public TransferPopUp(User user){
         Container pane = getContentPane();
         pane.setLayout(new GridBagLayout());
 
         setTitle("Überweisen");
         setLocationRelativeTo(null);
         setSize(500, 500);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setVisible(true);
+        setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+
 
         gbc.insets = new Insets(5, 10, 5, 10);
 
@@ -86,6 +86,8 @@ public class TransferDialog extends JFrame {
                 Main.t.dispose();
             }
         });
+
+        setVisible(true);
 
     }
 }

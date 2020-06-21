@@ -221,7 +221,7 @@ public class Database {
 
     public void searchData(int userID, String table, String item) {
 
-        String query = "select " + item + " from " + table + " where userID=" + userID;
+        String query = "select " + item + " from bank." + table + " where userID=" + userID;
         ResultSet rs = search(query);
         try {
 
