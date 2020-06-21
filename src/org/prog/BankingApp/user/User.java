@@ -89,4 +89,46 @@ public class User {
     public void deposit(Account acc, int amount){
         acc.deposit(amount);
     }
+
+
+    //getter der Variablen
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getBirthday() {
+        return birthday;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public int getPlz() {
+        return plz;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public String geteMail() {
+        return eMail;
+    }
+
+    public int getUserID() {
+        return userID;
+    }
 }

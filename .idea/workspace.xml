@@ -20,20 +20,20 @@
       <path>
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
         <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="BRANCH:Account" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:master" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </select>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a5493ed1-1379-4c90-939b-424e649674c6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/org/prog/BankingApp/ui/LoginFrame.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/org/prog/BankingApp/ui/Panel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/prog/BankingApp/ui/RegisterPanel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/prog/BankingApp/ui/WorkInterface.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/prog/BankingApp/database/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/prog/BankingApp/database/Database.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/prog/BankingApp/database/IdGetter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/prog/BankingApp/database/IdGetter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/prog/BankingApp/ui/Frame.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/prog/BankingApp/user/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/prog/BankingApp/user/Admin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/prog/BankingApp/user/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/prog/BankingApp/user/Login.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/prog/BankingApp/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/prog/BankingApp/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/prog/BankingApp/ui/Dialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/prog/BankingApp/ui/TransferDialog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/prog/BankingApp/ui/LoginFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/prog/BankingApp/ui/LoginFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/prog/BankingApp/ui/Panel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/prog/BankingApp/user/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/prog/BankingApp/user/User.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,7 +86,7 @@
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="JavaScript.Libraries" />
   </component>
-  <component name="RunManager" selected="Application.LoginFrame">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Frame" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.prog.BankingApp.ui.Frame" />
       <module name="ProjectBankingApp" />
@@ -126,8 +126,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Panel" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.prog.BankingApp.ui.Panel" />
+    <configuration name="RegisterPanel" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.prog.BankingApp.ui.RegisterPanel" />
       <module name="ProjectBankingApp" />
       <extension name="coverage">
         <pattern>
@@ -141,10 +141,10 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main" />
         <item itemvalue="Application.LoginFrame" />
         <item itemvalue="Application.Frame" />
-        <item itemvalue="Application.Panel" />
-        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.RegisterPanel" />
       </list>
     </recent_temporary>
   </component>
@@ -161,7 +161,7 @@
       <workItem from="1591712713428" duration="2045000" />
       <workItem from="1592475039101" duration="20514000" />
       <workItem from="1592554784116" duration="30431000" />
-      <workItem from="1592726426662" duration="21726000" />
+      <workItem from="1592726426662" duration="30322000" />
     </task>
     <servers />
   </component>
@@ -179,7 +179,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="Account" />
+                        <option value="master" />
                       </list>
                     </value>
                   </entry>
@@ -205,14 +205,14 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="414" y="195" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1592557432662" />
-    <state x="765" y="241" key="#com.intellij.ide.util.MemberChooser" timestamp="1592733131389">
+    <state x="765" y="241" key="#com.intellij.ide.util.MemberChooser" timestamp="1592756655824">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="765" y="241" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1080@0.0.1920.1080" timestamp="1592733131389" />
-    <state x="509" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1592647959150">
+    <state x="765" y="241" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1080@0.0.1920.1080" timestamp="1592756655824" />
+    <state x="509" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1592755039533">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="509" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1592647959150" />
+    <state x="509" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1592755039533" />
     <state x="690" y="287" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1592571668730">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
@@ -221,38 +221,38 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="740" y="295" key="FileChooserDialogImpl/0.0.1920.1080@0.0.1920.1080" timestamp="1592571829596" />
-    <state width="1877" height="299" key="GridCell.Tab.0.bottom" timestamp="1592752052094">
+    <state width="1877" height="241" key="GridCell.Tab.0.bottom" timestamp="1592760080176">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1877" height="299" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1592752052094" />
-    <state width="1877" height="299" key="GridCell.Tab.0.center" timestamp="1592752052094">
+    <state width="1877" height="241" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1592760080176" />
+    <state width="1877" height="241" key="GridCell.Tab.0.center" timestamp="1592760080176">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1877" height="299" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1592752052094" />
-    <state width="1877" height="299" key="GridCell.Tab.0.left" timestamp="1592752052094">
+    <state width="1877" height="241" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1592760080176" />
+    <state width="1877" height="241" key="GridCell.Tab.0.left" timestamp="1592760080176">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1877" height="299" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1592752052094" />
-    <state width="1877" height="299" key="GridCell.Tab.0.right" timestamp="1592752052094">
+    <state width="1877" height="241" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1592760080176" />
+    <state width="1877" height="241" key="GridCell.Tab.0.right" timestamp="1592760080176">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1877" height="299" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1592752052094" />
-    <state width="1877" height="363" key="GridCell.Tab.1.bottom" timestamp="1592751037475">
+    <state width="1877" height="241" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1592760080176" />
+    <state width="1877" height="363" key="GridCell.Tab.1.bottom" timestamp="1592757422392">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1877" height="363" key="GridCell.Tab.1.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1592751037475" />
-    <state width="1877" height="363" key="GridCell.Tab.1.center" timestamp="1592751037475">
+    <state width="1877" height="363" key="GridCell.Tab.1.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1592757422392" />
+    <state width="1877" height="363" key="GridCell.Tab.1.center" timestamp="1592757422392">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1877" height="363" key="GridCell.Tab.1.center/0.0.1920.1080@0.0.1920.1080" timestamp="1592751037475" />
-    <state width="1877" height="363" key="GridCell.Tab.1.left" timestamp="1592751037475">
+    <state width="1877" height="363" key="GridCell.Tab.1.center/0.0.1920.1080@0.0.1920.1080" timestamp="1592757422392" />
+    <state width="1877" height="363" key="GridCell.Tab.1.left" timestamp="1592757422392">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1877" height="363" key="GridCell.Tab.1.left/0.0.1920.1080@0.0.1920.1080" timestamp="1592751037475" />
-    <state width="1877" height="363" key="GridCell.Tab.1.right" timestamp="1592751037475">
+    <state width="1877" height="363" key="GridCell.Tab.1.left/0.0.1920.1080@0.0.1920.1080" timestamp="1592757422392" />
+    <state width="1877" height="363" key="GridCell.Tab.1.right" timestamp="1592757422392">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1877" height="363" key="GridCell.Tab.1.right/0.0.1920.1080@0.0.1920.1080" timestamp="1592751037475" />
+    <state width="1877" height="363" key="GridCell.Tab.1.right/0.0.1920.1080@0.0.1920.1080" timestamp="1592757422392" />
     <state x="430" y="101" width="998" height="742" key="SettingsEditor" timestamp="1592571831865">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
@@ -273,20 +273,9 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="616" y="250" key="run.anything.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1592566945937" />
-    <state x="623" y="235" width="672" height="678" key="search.everywhere.popup" timestamp="1592746737318">
+    <state x="623" y="235" width="672" height="678" key="search.everywhere.popup" timestamp="1592755309810">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="623" y="235" width="672" height="678" key="search.everywhere.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1592746737318" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/org/prog/BankingApp/ui/LoginFrame.java</url>
-          <line>79</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <state x="623" y="235" width="672" height="678" key="search.everywhere.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1592755309810" />
   </component>
 </project>

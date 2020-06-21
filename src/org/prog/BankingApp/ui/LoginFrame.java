@@ -2,15 +2,12 @@ package org.prog.BankingApp.ui;
 
 import org.prog.BankingApp.Main;
 import org.prog.BankingApp.database.Database;
-import org.prog.BankingApp.user.Admin;
 import org.prog.BankingApp.user.User;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 
 public class LoginFrame extends JFrame {
 
@@ -82,12 +79,13 @@ public class LoginFrame extends JFrame {
 
                 String userId_value = userId.getText();
                 int loginId_value = Integer.parseInt(userId_value);
-                String password_value = pw.getText();
+                String password_value = new String(pw.getPassword());
                 String role_value = role.getSelectedItem().toString();
 
                 if(Database.data.checkLogin(loginId_value, password_value, role_value)){
                     User user = Database.data.getUser(loginId_value);
-
+                    Main.w = new WorkInterface(user);
+                    Main.f.dispose();
                 }
                 else {
                     System.out.println("Fehler beim einloggen");
@@ -109,17 +107,8 @@ public class LoginFrame extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                String userId_value = userId.getText();
-                int loginId_value = Integer.parseInt(userId_value);
-                String password_value = password.getText();
-                String role_value = role.getSelectedItem().toString();
+                Main.r = new RegisterPanel();
 
-                if(role_value.equals("Admin")){
-                    System.out.println("Du kannst kein Admin sein");
-                }
-                else {
-
-                }
             }
         });
 
