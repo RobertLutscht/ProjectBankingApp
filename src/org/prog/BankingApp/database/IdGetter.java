@@ -8,16 +8,28 @@ public class IdGetter {
 
     public static int getNextAccId() {
         //TODO @jonas hier die id aus der db getten
-        return 1 + Database.data.getMaxId("kontonummer", "accounts");
+        if(Database.data.getMaxId("kontonummer", "accounts") == null){
+            return 1;
+        }else {
+            return 1 + Database.data.getMaxId("kontonummer", "accounts");
+        }
     }
 
     public static int getNextOwnerId() {
         //TODO @jonas hier die ownerid aus der db getten
-        return 1 + Database.data.getMaxId("userID", "users");
+        if(Database.data.getMaxId("userID", "users") == null){
+            return 1;
+        }else {
+            return 1 + Database.data.getMaxId("userID", "users");
+        }
     }
 
     public static int getNextTracId() {
         //TODO
-        return 1 + Database.data.getMaxId("transactionID", "transactions");
+        if(Database.data.getMaxId("transactionID", "transactions") == null){
+            return 1;
+        }else {
+            return 1 + Database.data.getMaxId("transactionID", "transactions");
+        }
     }
 }

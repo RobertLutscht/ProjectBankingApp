@@ -14,7 +14,7 @@ public class Login {
                 country, phoneNumber, eMail, rolle);
     }
 
-    public void login(int userId, int pw, String rolle){
+    public void login(int userId, String pw, String rolle){
 
         if(Database.data.checkLogin(userId, pw, rolle)){
             User user = Database.data.getUser(userId);

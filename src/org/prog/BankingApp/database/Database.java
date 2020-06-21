@@ -32,7 +32,7 @@ public class Database {
         try {
             PreparedStatement statement = con.prepareStatement("CREATE TABLE IF NOT EXISTS Bank.users (" +
                     "userID INT NOT NULL, firstName VARCHAR(45) NOT NULL, lastName VARCHAR(45) NOT NULL, " +
-                    "birthday VARCHAR(45) NOT NULL, street VARCHAR(45) NOT NULL, plz VARCHAR(45) NOT NULL, " +
+                    "birthday VARCHAR(100) NOT NULL, street VARCHAR(45) NOT NULL, plz VARCHAR(45) NOT NULL, " +
                     "city VARCHAR(45) NOT NULL, country VARCHAR(45) NOT NULL, phoneNumber VARCHAR(45) NOT NULL, " +
                     "eMail VARCHAR(45) NOT NULL)");
             statement.executeUpdate();
@@ -128,30 +128,35 @@ public class Database {
             st.setInt(1, userID);
             st.setString(2, password);
             st.setString(3, rolle);
+            st.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
     }
 
 
-    public boolean checkLogin(int userID, int pw, String rolle) {
-        try {
-            String query = "select * from Bank.loginData where userid = " + userID;
-            Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery(query);
-            rs.next();
+    public boolean checkLogin(int userID, String pw, String rolle) {
+        boolean isFine = false;
 
-            if (rs.getInt("password") == pw && rs.getString("rolle").equals(rolle)) {
-                return true;
-            } else {
-                return false;
+        try {
+            PreparedStatement st = con.prepareStatement("select * from Bank.loginData where userid = ? ");
+            st.setInt(1, userID);
+            ResultSet rs = st.executeQuery();
+
+            while(rs.next()){
+                String check = rs.getString(2);
+                String check1 = rs.getString(3);
+                if (check.equals(pw) && check1.equals(rolle)) {
+                    isFine = true;
+                }
             }
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-
-        return false;
+        finally {
+            return isFine;
+        }
     }
 
     public User getUser(int userID) {
@@ -162,15 +167,14 @@ public class Database {
             st.setInt(1, userID);
             ResultSet rs = st.executeQuery();
 
-            if(rs.next()){
-                if(rs.getInt("userID") == 1){
-                    return  new Admin(rs.getInt("userID"));
-                }
-                else {
+            if (rs.next()) {
+                if (rs.getInt("userID") == 1) {
+                    return new Admin(rs.getInt("userID"));
+                } else {
                     return new User(rs.getString("firstName"), rs.getString("lastName"),
                             rs.getString("birthday"), rs.getString("street"), rs.getInt("plz"),
                             rs.getString("city"), rs.getString("country"), rs.getString("phoneNumber"),
-                                    rs.getString("eMail"), rs.getInt("userID"));
+                            rs.getString("eMail"), rs.getInt("userID"));
                 }
 
             }
@@ -240,14 +244,14 @@ public class Database {
         }
     }
 
-    public boolean compareIban(String iban){
+    public boolean compareIban(String iban) {
 
         String query = "select iban from bank.accounts where iban = " + iban;
         ResultSet rs = search(query);
 
         try {
             rs.next();
-            if(rs != null){
+            if (rs != null) {
                 return true;
             }
 
@@ -258,7 +262,7 @@ public class Database {
         return false;
     }
 
-    public int getBalance(String iban){
+    public int getBalance(String iban) {
         String query = "select balance from bank.accounts where iban = " + iban;
         ResultSet rs = search(query);
 
@@ -272,7 +276,6 @@ public class Database {
         return 0;
 
     }
-
 
 
     private ResultSet search(String query) {
@@ -343,18 +346,18 @@ public class Database {
     }
 
 
-    public int getMaxId(String id, String table) {
+    public Integer getMaxId(String id, String table) {
         String query = "select MAX(" + id + ") as number FROM bank." + table;
-        int ergebnis = 0;
+        Integer solution = 0;
         try {
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(query);
             rs.next();
-            ergebnis = Integer.parseInt(rs.getString("number"));
+            solution = Integer.parseInt(rs.getString("number"));
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         } finally {
-            return ergebnis;
+            return solution;
         }
     }
 }
