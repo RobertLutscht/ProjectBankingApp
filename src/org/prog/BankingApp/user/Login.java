@@ -17,7 +17,7 @@ public class Login {
     public void login(int userId, int pw, String rolle){
 
         if(Database.data.checkLogin(userId, pw, rolle)){
-            Database.data.
+            User user = Database.data.getUser(userId);
         }
 
     }

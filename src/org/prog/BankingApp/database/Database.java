@@ -1,9 +1,12 @@
 package org.prog.BankingApp.database;
 
 import org.prog.BankingApp.account.Account;
+import org.prog.BankingApp.account.CheckingAccount;
+import org.prog.BankingApp.account.Creditcard;
+import org.prog.BankingApp.account.FixedDepositAccount;
+import org.prog.BankingApp.user.Admin;
 import org.prog.BankingApp.user.User;
 
-import javax.xml.xpath.XPathEvaluationResult;
 import java.sql.*;
 
 public class Database {
@@ -12,20 +15,20 @@ public class Database {
 
     Connection con;
 
-    private Database(){
+    private Database() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             con = DriverManager.getConnection("jdbc:mysql://localhost", "root", "Hallo!");
             PreparedStatement ps = con.prepareStatement("CREATE DATABASE IF NOT EXISTS Bank");
             ps.executeUpdate();
-        } catch(ClassNotFoundException e) {
+        } catch (ClassNotFoundException e) {
             e.printStackTrace();
-        } catch(SQLException throwables){
+        } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
     }
 
-    public void initiateDB(){
+    public void initiateDB() {
         try {
             PreparedStatement statement = con.prepareStatement("CREATE TABLE IF NOT EXISTS Bank.users (" +
                     "userID INT NOT NULL, firstName VARCHAR(45) NOT NULL, lastName VARCHAR(45) NOT NULL, " +
@@ -40,7 +43,7 @@ public class Database {
         try {
             PreparedStatement statement = con.prepareStatement("CREATE TABLE IF NOT EXISTS Bank.accounts (" +
                     "userID INT NOT NULL, iban VARCHAR(45) NOT NULL, kontonummer INT NOT NULL, bic VARCHAR(45) NOT NULL, " +
-                    "balance INT NOT NULL, `limit` INT NOT NULL)");
+                    "balance INT NOT NULL, `limit` INT NOT NULL, term INT NOT NULL, kind INT NOT NULL)");
             statement.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -64,7 +67,7 @@ public class Database {
         }
     }
 
-    public void addUser(int userID, String firstName, String lastName, String birthday, String street, int plz, String city, String country, String phoneNumber, String eMail){
+    public void addUser(int userID, String firstName, String lastName, String birthday, String street, int plz, String city, String country, String phoneNumber, String eMail) {
         try {
             PreparedStatement st = con.prepareStatement("insert into Bank.users values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
             st.setInt(1, userID);
@@ -84,15 +87,17 @@ public class Database {
         }
     }
 
-    public void addAccount(int userID, String iban, int knr, String bic, int balance, int limit){
+    public void addAccount(int userID, String iban, int knr, String bic, int balance, int limit, int term, int kind) {
         try {
-            PreparedStatement st = con.prepareStatement("insert into Bank.accounts values (?, ?, ?, ?, ?, ?)");
+            PreparedStatement st = con.prepareStatement("insert into Bank.accounts values (?, ?, ?, ?, ?, ?, ?, ?)");
             st.setInt(1, userID);
             st.setString(2, iban);
             st.setInt(3, knr);
             st.setString(4, bic);
             st.setInt(5, balance);
             st.setInt(6, limit);
+            st.setInt(7, term);
+            st.setInt(8, kind);
             st.executeUpdate();
             System.out.println("Konto wurde hinzugefügt");
         } catch (SQLException throwables) {
@@ -100,7 +105,7 @@ public class Database {
         }
     }
 
-    public void addTransaction(int userID, int transactionID, String fromIBAN, String toIBAN, String date, int ammount){
+    public void addTransaction(int userID, int transactionID, String fromIBAN, String toIBAN, String date, int ammount) {
         PreparedStatement st = null;
         try {
             st = con.prepareStatement("insert into Bank.transactions values (?, ?, ?, ?, ?, ?)");
@@ -117,7 +122,7 @@ public class Database {
         }
     }
 
-    public void addLoginData(int userID, String password, String rolle){
+    public void addLoginData(int userID, String password, String rolle) {
         try {
             PreparedStatement st = con.prepareStatement("insert into Bank.loginData values (?, ?, ?)");
             st.setInt(1, userID);
@@ -129,55 +134,102 @@ public class Database {
     }
 
 
-    public boolean checkLogin(int userID, int pw, String rolle){
+    public boolean checkLogin(int userID, int pw, String rolle) {
         try {
             String query = "select * from Bank.loginData where userid = " + userID;
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(query);
             rs.next();
 
-            if(rs.getInt("password") == pw && rs.getString("rolle").equals(rolle)){
+            if (rs.getInt("password") == pw && rs.getString("rolle").equals(rolle)) {
                 return true;
             } else {
                 return false;
             }
 
-        }
-        catch (SQLException throwables) {
+        } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
 
         return false;
     }
 
-    public User getUser(int userID){
+    public User getUser(int userID) {
 
-    }
-
-    public Account getAccount(String iban){
+        PreparedStatement st = null;
         try {
-            PreparedStatement st = con.prepareStatement("SELECT userID, bic, balance, 'limit' FROM accounts WHERE iban = ?");
+            st = con.prepareStatement("SELECT * FROM bank.users WHERE userID = ?");
+            st.setInt(1, userID);
+            ResultSet rs = st.executeQuery();
+
+            if(rs.next()){
+                if(rs.getInt("userID") == 1){
+                    return  new Admin(rs.getInt("userID"));
+                }
+                else {
+                    return new User(rs.getString("firstName"), rs.getString("lastName"),
+                            rs.getString("birthday"), rs.getString("street"), rs.getInt("plz"),
+                            rs.getString("city"), rs.getString("country"), rs.getString("phoneNumber"),
+                                    rs.getString("eMail"), rs.getInt("userID"));
+                }
+
+            }
+
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+
+        return null;
+    }
+
+    public Account getAccount(String iban) {
+
+        try {
+
+            PreparedStatement st = con.prepareStatement("SELECT * FROM bank.accounts WHERE iban = ?");
+            st.setString(1, iban);
+            ResultSet rs = st.executeQuery();
+
+            if (rs.next()) {
+                if (rs.getInt("kind") == 1) {
+
+                    return new CheckingAccount(rs.getInt("userID"), rs.getString("iban"),
+                            rs.getInt("kontonummer"), rs.getString("bic"),
+                            rs.getInt("balance"), rs.getInt("limit"));
+                } else if (rs.getInt("kind") == 2) {
+                    return new Creditcard(rs.getInt("userID"), rs.getString("iban"),
+                            rs.getInt("kontonummer"), rs.getString("bic"),
+                            rs.getInt("balance"), rs.getInt("limit"));
+                } else if (rs.getInt("kind") == 3) {
+                    return new FixedDepositAccount(rs.getInt("userID"), rs.getString("iban"),
+                            rs.getInt("kontonummer"), rs.getString("bic"),
+                            rs.getInt("balance"), rs.getInt("limit"), rs.getInt("term"));
+                }
+            }
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return null;
     }
 
 
-    public void searchData(int userID, String table, String item){
+    public void searchData(int userID, String table, String item) {
 
         String query = "select " + item + " from " + table + " where userID=" + userID;
-        ResultSet rs = search(query, item);
+        ResultSet rs = search(query);
         try {
 
-            int columns =rs.getMetaData().getColumnCount();
+            int columns = rs.getMetaData().getColumnCount();
 
             for (int i = 1; i <= columns; i++) {
                 System.out.print(rs.getMetaData().getColumnLabel(i) + "\t\t");
             }
             System.out.println();
 
-            while(rs.next()){
-                for(int i = 1; i <= columns; i++){
+            while (rs.next()) {
+                for (int i = 1; i <= columns; i++) {
                     System.out.print(rs.getString(i) + "\t\t");
                 }
                 System.out.println();
@@ -188,8 +240,42 @@ public class Database {
         }
     }
 
+    public boolean compareIban(String iban){
 
-    private ResultSet search(String query, String item){
+        String query = "select iban from bank.accounts where iban = " + iban;
+        ResultSet rs = search(query);
+
+        try {
+            rs.next();
+            if(rs != null){
+                return true;
+            }
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return false;
+    }
+
+    public int getBalance(String iban){
+        String query = "select balance from bank.accounts where iban = " + iban;
+        ResultSet rs = search(query);
+
+        try {
+            rs.next();
+            return rs.getInt("balance");
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return 0;
+
+    }
+
+
+
+    private ResultSet search(String query) {
 
         ResultSet rs = null;
 
@@ -200,14 +286,13 @@ public class Database {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
             System.out.println("Es gab einen Fehler");
-        }
-        finally {
+        } finally {
             return rs;
         }
     }
 
 
-    public void updateAccount(String column, int change, String iban){
+    public void updateAccount(String column, int change, String iban) {
         try {
             PreparedStatement st = con.prepareStatement("update Bank.accounts set ? = ? where iban = ?");
             st.setString(1, column);
@@ -219,7 +304,7 @@ public class Database {
         }
     }
 
-    public void updateUserGeneral(String change, String update, int id){
+    public void updateUserGeneral(String change, String update, int id) {
         try {
             PreparedStatement st = con.prepareStatement("update Bank.users set ? = ? where userID = ?");
             st.setString(1, change);
@@ -231,7 +316,7 @@ public class Database {
         }
     }
 
-    public void updateUserResidence(String street, String plz, String city, String country, int id){
+    public void updateUserResidence(String street, String plz, String city, String country, int id) {
         try {
             PreparedStatement st = con.prepareStatement("update Bank.users set street = ? set plz = ? set city = ? " +
                     "set country = ? where userID = ?");
@@ -246,7 +331,7 @@ public class Database {
         }
     }
 
-    public void updateLogin(int userID, String pw){
+    public void updateLogin(int userID, String pw) {
         try {
             PreparedStatement st = con.prepareStatement("update Bank.Login set password = ? where userID = ?");
             st.setInt(1, userID);
@@ -258,14 +343,14 @@ public class Database {
     }
 
 
-    public int getMaxId(String id, String table){
+    public int getMaxId(String id, String table) {
         String query = "select MAX(" + id + ") as number FROM bank." + table;
         int ergebnis = 0;
         try {
             Statement st = con.createStatement();
-             ResultSet rs = st.executeQuery(query);
-             rs.next();
-             ergebnis = Integer.parseInt(rs.getString("number"));
+            ResultSet rs = st.executeQuery(query);
+            rs.next();
+            ergebnis = Integer.parseInt(rs.getString("number"));
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         } finally {

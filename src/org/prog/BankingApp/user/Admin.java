@@ -6,12 +6,17 @@ import org.prog.BankingApp.database.Database;
 
 public class Admin extends User{
 
-    Admin admin = new Admin();
-
-    private Admin(){
+    public Admin(){
         super("admin", "Faule", "Bastarde", "04.06.2000", "Affen Straße",
                 68309, "Mannheim", "Germany", "01746743567", "admin@bank.de", "Admin");
     }
+
+    public Admin(int userID){
+        super("Faule", "Bastarde", "04.06.2000", "Affen Straße", 68309, "Mannheim", "Germany",
+                "01746743567", "admin@bank.de", 1);
+    }
+
+
 
 
     public void searchAd(int userID, String table, String item) {

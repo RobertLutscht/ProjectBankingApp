@@ -40,6 +40,20 @@ public class User {
         Database.data.addLoginData(userID, password, rolle);
     }
 
+    public User(String firstName, String lastName, String birthday, String street, int plz, String city, String country,
+                String phoneNumber, String eMail, int userId){
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.birthday = birthday;
+        this.street = street;
+        this.plz = plz;
+        this.city = city;
+        this.country = country;
+        this.phoneNumber = phoneNumber;
+        this.eMail = eMail;
+        this.userID = userId;
+    }
+
     public void search(String table, String item){
         Database.data.searchData(userID, table, item);
     }

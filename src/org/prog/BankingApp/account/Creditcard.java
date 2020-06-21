@@ -2,6 +2,7 @@ package org.prog.BankingApp.account;
 
 import org.prog.BankingApp.Transactions;
 import org.prog.BankingApp.account.Account;
+import org.prog.BankingApp.database.Database;
 
 public class Creditcard extends Account {
 
@@ -11,6 +12,14 @@ public class Creditcard extends Account {
     public Creditcard(int ownerID, int limit){
         super(ownerID);
         this.setLimit(limit);
+        setKind(2);
+        Database.data.updateAccount("kind", 2, getIBAN());
+        Database.data.updateAccount("limit", getLimit(), getIBAN());
+    }
+
+    public Creditcard(int ownerID, String iban, int accountId, String bic, int balance, int limit){
+        super(ownerID, iban,accountId, bic, balance, limit);
+        setKind(2);
     }
 
     @Override

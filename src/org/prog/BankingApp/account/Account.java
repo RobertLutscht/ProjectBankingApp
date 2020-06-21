@@ -18,13 +18,25 @@ public abstract class Account {
     private int balance;
     private double interestRate;
     private int limit = 0;
+    private int term = 0;
+    private int kind = 0;
+
 
     //Der Account Konstruktor
     public Account(int ownerID) {
         this.ownerID = ownerID;
         this.accountID = IdGetter.getNextAccId();
         this.IBAN = Iban.convertKnrBlzToIBAN(accountID);
-        Database.data.addAccount(ownerID, IBAN, accountID, BIC, balance, limit);
+        Database.data.addAccount(ownerID, IBAN, accountID, BIC, balance, limit, term, kind);
+    }
+
+    public Account(int ownerID, String iban, int accountId, String bic, int balance, int limit){
+        this.ownerID = ownerID;
+        this.accountID = accountId;
+        this.IBAN = iban;
+        this. balance = balance;
+        this.limit = limit;
+        this.term = term;
     }
 
     //Methode um Geld auf das Konto einzuzahlen
@@ -46,6 +58,18 @@ public abstract class Account {
     }
 
     public void transfer(int ammount, String iban){
+        if(Database.data.compareIban(iban)){
+            if (balance - ammount >= 0) {
+                Transactions transaction = new Transactions(ownerID, ammount, iban, this.IBAN);
+                balance -= ammount;
+                Database.data.updateAccount("balance", balance, this.IBAN);
+                Database.data.updateAccount("balance", Database.data.getBalance(iban) + ammount, iban);
+
+            } else {
+                System.out.println("Du hast nicht genug Geld auf deinem Konto");
+            }
+            return;
+        }
         if(CheckUtility.ibancheck(iban)) {
 
             if (balance - ammount >= 0) {
@@ -80,6 +104,10 @@ public abstract class Account {
         return ownerID;
     }
 
+    public int getTerm() {
+        return term;
+    }
+
     public int getLimit() {
         return limit;
     }
@@ -107,4 +135,11 @@ public abstract class Account {
         this.limit = limit;
     }
 
+    public void setTerm(int term) {
+        this.term = term;
+    }
+
+    public void setKind(int kind) {
+        this.kind = kind;
+    }
 }
