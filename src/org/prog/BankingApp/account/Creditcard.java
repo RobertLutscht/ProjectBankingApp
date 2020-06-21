@@ -33,6 +33,8 @@ public class Creditcard extends Account {
             Transactions transaction = new Transactions(this.getOwnerID(), ammount, this.getIBAN(), iban);
             setBalance(getBalance() - ammount);
             overdrawn = checkOverdraw();
+            Database.data.updateAccount("balance", getBalance(), this.getIBAN());
+            Database.data.updateAccount("balance", Database.data.getBalance(iban) + ammount, iban);
         } else {
             throw new RuntimeException("Sie haben nicht genug Geld auf dem Konto");
         }
